@@ -5,7 +5,8 @@ var Ship = function(game) {
 	this.anchor.setTo(0.5, 0.5);
 
 	this.animOffset = Math.random() * Math.PI;
-
+    this.worldPos = Vector(-1500, 0);
+    this.direction = Vector(10, 0);
 	this.updatePos();
 }
 
@@ -20,6 +21,10 @@ Ship.prototype.update = function() {
 	/*this.x = game.camera.width / 2;
 	this.y = game.camera.height / 2;*/
 }
+
+Ship.prototype.updateWorldPos(){
+    this.worldPos = this.worldPos.add(this.direction);
+};
 
 Ship.prototype.updatePos = function() {
 	var time = this.game.time.time / 1000;
