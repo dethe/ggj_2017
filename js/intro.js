@@ -25,7 +25,7 @@ Tempest.Intro.prototype = {
         });
         this.input.keyboard.enabled = true;
         this.input.keyboard.addCallbacks({}, null, null, function(){
-            game.state.start('Assam');
+            game.state.start('Sea');
         });
     }
 };

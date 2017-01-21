@@ -7,13 +7,17 @@ Tempest.Boot.prototype = {
     var loadingbar = this.load.image('preloadbar', 'images/loadingbar.png');
   },
   create: function() {
-    //loading screen will have a white background
-    this.stage.backgroundColor = '#fff';
-    //scaling options
-    this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-    //have the game centered horizontally
+    // Set game to automatically resize
+    this.scaleMode = Phaser.ScaleManager.RESIZE;
+    this.scale.parentIsWindow = true;
     this.scale.pageAlignHorizontally = true;
     this.scale.pageAlignVertically = true;
+
+    // Set background color
+    // this.stage.backgroundColor = '#09f';
+    this.stage.backgroundColor = '#000';
+    //scaling options
+    //have the game centered horizontally
     //screen size will be set automatically
     // this.scale.setScreenSize(true); // This function no longer exists in Phaser
     //physics system
