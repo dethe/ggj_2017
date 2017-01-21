@@ -2,36 +2,28 @@ var Wave = function(game, x, y) {
 	this.game = game;
 	Phaser.Image.call(this, this.game, x, y, 'wave');
 
-	this.initialPos = { x: x, y: y }; // looks ugly, should be es6 already!
+	this.scale.setTo(0.4, 0.4);
 
+	this.initialPos = { x: x, y: y }; // looks ugly, should be es6 already!
+	this.animOffset = Math.random() * Math.PI * 2;
 }
 
 Wave.prototype = Object.create(Phaser.Image.prototype);
 Wave.prototype.constructor = Wave;
 
 Wave.prototype.update = function() {
-	console.log('test');
 	var time = this.game.time.time / 1000;
-	this.y = this.initialPos.y + Math.sin(time) * 100;
+	this.y = this.initialPos.y + Math.sin(time + this.animOffset) * 2.5;
 }
 
 var Ocean = function(game) {
 	this.game = game;
 	Phaser.Group.call(this, this.game);
 
-	this.waves = [];
-
-	for(var y = 0; y < 10; y++) {
-		for(var x = 0; x < 10; x++) {
-			/*var wave = game.add.image(x*100-100, y*75-100, 'wave');
+	for(var y = 0; y < 22; y++) {
+		for(var x = 0; x < 22; x++) {
+			var wave = new Wave(this.game, x * 60 - 40, y * 35 - 60);
 			this.add(wave);
-
-			this.waves.push(wave);*/
-
-			var wave = new Wave(this.game, x * 100 - 100, y * 75 - 100);
-			this.add(wave);
-
-			this.waves.push(wave);
 		}
 	}
 }
@@ -40,5 +32,6 @@ Ocean.prototype = Object.create(Phaser.Group.prototype);
 Ocean.prototype.constructor = Ocean;
 
 Ocean.prototype.update = function() {
-
+	Phaser.Group.prototype.update.call(this);
+	//this.children.update();
 }

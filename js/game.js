@@ -5,7 +5,11 @@ function preload() {
 }
 
 function create() {
+	game.stage.backgroundColor = '#f09';
+
 	new Ocean(game);
+
+
 }
 
 function update() {
