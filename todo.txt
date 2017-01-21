@@ -1,5 +1,7 @@
 TODO LIST
 
+- figure out gameplay and goals
+
 - player ship movement
 - wave scrolling
 - obstacle template (extends of Sprite)
