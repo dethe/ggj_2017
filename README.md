@@ -7,6 +7,8 @@ A sailing game that takes place during a storm (or storms?) in a teapot. Within 
 Goal: Make it to the Spout with the highest value cargo you can manage.
 Mechanic: Avoid obstacles at sea, buy and sell in port, placing characters in different slots of your
 
+Question: can you defeat obstacles? How do you avoid them and make that interesting?
+
 If we need names for characters (or players): Prospero, Miranda, Ariel, Caliban, Sycorax, Iris, Ceres, Juno, Alonso, Sebastian, Antonio, Ferdinand, Gonzalo, Adrian, Francisco, Trinculo, Stephano,
 
 Sea of Assam
@@ -15,7 +17,7 @@ Sea of Assam
     Things to buy: London tube passes, hardtack, grog
 
 Sea of Pekoe
-    Obstacles: Surf ninjas, samovars
+    Obstacles: Surf ninjas (give surfboards), samovars, lemon wedges
     Island: Biscuit island
     Things to buy: Antimacassars, sea sickness pills
 
@@ -50,3 +52,10 @@ Defeating the obstacles can sometimes give you trade good too.
 Escaping out the spout give you points based on the base price of each trade good.
 
 All trade items and base prices:
+
+    Sugar bowls (5g)
+    Fortunes (2g)
+    London tube passes (3g)
+    Hardtack (1g)
+    Grog (6g)
+    Surfboards (give bonus to avoid Tempest or Maelstrom)
