@@ -10,8 +10,10 @@ Tempest.Sea.prototype = {
     	var ship = new Ship(this);
         var lemon = new Obstacle(this, 100, 100, 'lemon');
         this.add.existing(ocean);
-    	this.add.existing(ship);
+    	//this.add.existing(ship);
         this.add.existing(lemon);
+
+		ocean.add(ship);
     },
     update: function update() {
 

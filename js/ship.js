@@ -26,6 +26,8 @@ Ship.prototype.updatePos = function() {
 	this.x = this.game.camera.width / 2;
 	this.y = this.game.camera.height / 2;
 
+	this.zIndex = this.y - 30;
+
 	this.y += Math.sin(time * 2.34) * 2;
 	this.angle = Math.sin(time * 1.89 + this.animOffset) * 2;
 }

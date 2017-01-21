@@ -4,9 +4,7 @@ TODO LIST
 
 - player ship movement
 - wave scrolling
-- obstacle template (extends of Sprite)
 - separate bobbing into reusable function
-- place player on proper z-index/drawing order
 - islands
 	- cut island image into separate images at different z-indexes?
 -
