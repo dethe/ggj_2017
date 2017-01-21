@@ -14,6 +14,7 @@ Wave.prototype.constructor = Wave;
 Wave.prototype.update = function() {
 	var time = this.game.time.time / 1000;
 	this.y = this.initialPos.y + Math.sin(time + this.animOffset) * 2.5;
+	this.x = this.initialPos.x + Math.cos(time + this.animOffset) * 1.25;
 }
 
 var Ocean = function(game) {
