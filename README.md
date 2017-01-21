@@ -42,6 +42,11 @@ Gunpowder Sea
     Things to buy: Opium, pepper
     You can get to the Spout from the Gunpowder Sea
 
+Jasmine Sea
+    Obstacles: tempest
+    Island: None known
+    Things to buy: Nothing
+
 In the centre is the tempest, but it drifts around and can pull you in from any of the other seas. It has no island and is its own obstacle.
 
 What you can sell at each island, and for how much is random (based on its base value), but influenced by the character you have
@@ -50,6 +55,15 @@ assigned for haggling. Characters are distributed randomly about the islands. Yo
 Defeating the obstacles can sometimes give you trade good too.
 
 Escaping out the spout give you points based on the base price of each trade good.
+
+Each Sea is a hexagon 1000 pixels per side. The 0,0 of the world is at the centre of the Jasmine Sea. The
+outer seas are truncated by the walls of the teapot, which form a radius of 2000 pixels.
+
+Ship position should be a vector from 0,0.
+
+If mag(pos) < 1000 ship is in Jasmine Sea.
+If mag(pos) > 2000 ship has hit the wall of the teapot
+If 
 
 All trade items and base prices:
 

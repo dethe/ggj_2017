@@ -8,7 +8,7 @@ Tempest.Boot.prototype = {
   },
   create: function() {
     // Set game to automatically resize
-    this.scaleMode = Phaser.ScaleManager.RESIZE;
+    this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
     this.scale.parentIsWindow = true;
     this.scale.pageAlignHorizontally = true;
     this.scale.pageAlignVertically = true;
