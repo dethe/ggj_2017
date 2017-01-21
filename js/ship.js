@@ -16,13 +16,18 @@ Ship.prototype.constructor = Ship;
 Ship.prototype.update = function() {
 
 	this.updatePos();
+    this.updateWorldPos();
 	//var dt = this.game.time.
 
 	/*this.x = game.camera.width / 2;
 	this.y = game.camera.height / 2;*/
 }
 
-Ship.prototype.updateWorldPos(){
+Ship.prototype.turn = function(radians){
+    this.direction = this.direction.rotate(radians);
+};
+
+Ship.prototype.updateWorldPos = function(){
     this.worldPos = this.worldPos.add(this.direction);
 };
 

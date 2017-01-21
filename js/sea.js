@@ -4,6 +4,8 @@ Tempest.Sea = function(){};
 Tempest.Sea.prototype = {
     create: function create() {
         this.stage.backgroundColor = '#FFF';
+        this.scaleMode = Phaser.ScaleManager.RESIZE;
+        // this.scale.parentIsWindow = true;
 
     	// Add stuff to the game
         var ocean = new Ocean(this);
@@ -13,7 +15,7 @@ Tempest.Sea.prototype = {
     	//this.add.existing(ship);
         this.add.existing(lemon);
 		ocean.add(ship);
-        this.keys = this.keyboard.addKeys({
+        this.keys = this.input.keyboard.addKeys({
             'forward1': Phaser.KeyCode.W, 'forward2': Phaser.KeyCode.UP,
             'left1': Phaser.KeyCode.A, 'left2': Phaser.KeyCode.LEFT,
             'right1': Phaser.KeyCode.D, 'right2': Phaser.KeyCode.RIGHT
