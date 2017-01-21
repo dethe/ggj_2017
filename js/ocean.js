@@ -2,6 +2,8 @@ var Wave = function(game, x, y) {
 	this.game = game;
 	Phaser.Image.call(this, this.game, x, y, 'wave');
 
+	this.alpha = 0.75;
+
 	this.scale.setTo(0.4, 0.4);
 
 	this.initialPos = { x: x, y: y }; // looks ugly, should be es6 already!
@@ -13,8 +15,8 @@ Wave.prototype.constructor = Wave;
 
 Wave.prototype.update = function() {
 	var time = this.game.time.time / 1000;
-	this.y = this.initialPos.y + Math.sin(time + this.animOffset) * 2.5;
-	this.x = this.initialPos.x + Math.cos(time + this.animOffset) * 1.25;
+	this.y = this.initialPos.y + Math.sin(time + this.animOffset) * 4;
+	this.x = this.initialPos.x + Math.cos(time + this.animOffset) * 2.5;
 }
 
 var Ocean = function(game) {
@@ -22,8 +24,10 @@ var Ocean = function(game) {
 	Phaser.Group.call(this, this.game);
 
 	for(var y = 0; y < 22; y++) {
-		for(var x = 0; x < 22; x++) {
-			var wave = new Wave(this.game, x * 60 - 40, y * 35 - 60);
+		var offsetX = random(0,100);
+		offsetX = 0; // FOR NOW, until we fix the wave graphic
+		for(var x = 0; x < 24; x++) {
+			var wave = new Wave(this.game, x * 60 - 40 - offsetX, y * 35 - 60);
 			this.add(wave);
 		}
 	}
@@ -35,4 +39,6 @@ Ocean.prototype.constructor = Ocean;
 Ocean.prototype.update = function() {
 	Phaser.Group.prototype.update.call(this);
 	//this.children.update();
+
+	//this.sort('y', Phaser.Group.SORT_ASCENDING);
 }

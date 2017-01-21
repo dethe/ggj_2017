@@ -1,0 +1,21 @@
+TODO LIST
+
+- figure out gameplay and goals
+
+- player ship movement
+- wave scrolling
+- obstacle template (extends of Sprite)
+- separate bobbing into reusable function
+- place player on proper z-index/drawing order
+- islands
+	- cut island image into separate images at different z-indexes?
+-
+
+ART TODO
+
+- lemon
+- small sugar cube
+- new waves
+- ship(s) (in 8 directions)
+- islands
+-
