@@ -12,5 +12,9 @@ Obstacle.prototype = Object.create(Phaser.Sprite.prototype);
 Obstacle.prototype.constructor = Obstacle;
 
 Obstacle.prototype.update = function() {
-
 }
+
+Obstacle.prototype.updateWorld = function(shipMotion) {
+    this.x -= shipMotion.x;
+    this.y -= shipMotion.y;
+};

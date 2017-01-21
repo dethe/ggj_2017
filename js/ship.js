@@ -6,7 +6,7 @@ var Ship = function(game) {
 
 	this.animOffset = Math.random() * Math.PI;
     this.worldPos = Vector(-1500, 0);
-    this.direction = Vector(10, 0);
+    this.direction = Vector(1, 0);
 	this.updatePos();
 }
 
@@ -15,16 +15,16 @@ Ship.prototype.constructor = Ship;
 
 Ship.prototype.update = function() {
 
-	this.updatePos();
     this.updateWorldPos();
+	this.updatePos();
 	//var dt = this.game.time.
 
 	/*this.x = game.camera.width / 2;
 	this.y = game.camera.height / 2;*/
 }
 
-Ship.prototype.turn = function(radians){
-    this.direction = this.direction.rotate(radians);
+Ship.prototype.turn = function(degrees){
+    this.direction = this.direction.rotate(degrees);
 };
 
 Ship.prototype.updateWorldPos = function(){
@@ -39,5 +39,6 @@ Ship.prototype.updatePos = function() {
 	this.zIndex = this.y - 30;
 
 	this.y += Math.sin(time * 2.34) * 2;
-	this.angle = Math.sin(time * 1.89 + this.animOffset) * 2;
+    console.log(this.direction.degrees());
+	this.angle = Math.sin(time * 1.89 + this.animOffset) * 2 + this.direction.degrees();
 }

@@ -28,8 +28,8 @@ var Ocean = function(game) {
 	this.waves = [];
 
 	for(var y = 0; y < 22; y++) {
-		var offsetX = random(0,100);
-		offsetX = 0; // FOR NOW, until we fix the wave graphic
+		// var offsetX = random(0,100);
+		var offsetX = 0; // FOR NOW, until we fix the wave graphic
 		for(var x = 0; x < 24; x++) {
 			var wave = new Wave(this.game, x * 60 - 40 - offsetX, y * 35 - 60);
 			this.add(wave);
@@ -45,9 +45,16 @@ Ocean.prototype.constructor = Ocean;
 Ocean.prototype.update = function() {
 	Phaser.Group.prototype.update.call(this);
 	//this.children.update();
-
 	this.sort('zIndex', Phaser.Group.SORT_ASCENDING);
 	/*this.children.sort(function(a, b) {
 		return b.initialPos.y;
 	});*/
 }
+
+Ocean.prototype.updateWorld = function(shipMotion){
+    this.waves.forEach(function(wave){
+        wave.initialPos.x -= shipMotion.x;
+        wave.initialPos.y -= shipMotion.y;
+        wave.z = wave.initialPos.y;
+    });
+};

@@ -6,13 +6,13 @@ Tempest.Sea.prototype = {
         this.stage.backgroundColor = '#FFF';
 
     	// Add stuff to the game
-        var ocean = new Ocean(this);
-    	var ship = new Ship(this);
-        var lemon = new Obstacle(this, 100, 100, 'lemon');
-        this.add.existing(ocean);
+        this.ocean = new Ocean(this);
+    	this.ship = new Ship(this);
+        this.lemon = new Obstacle(this, 100, 100, 'lemon');
+        this.add.existing(this.ocean);
     	//this.add.existing(ship);
-        this.add.existing(lemon);
-		ocean.add(ship);
+        this.add.existing(this.lemon);
+		this.ocean.add(this.ship);
         this.keys = this.input.keyboard.addKeys({
             'forward1': Phaser.KeyCode.W, 'forward2': Phaser.KeyCode.UP,
             'left1': Phaser.KeyCode.A, 'left2': Phaser.KeyCode.LEFT,
@@ -25,11 +25,14 @@ Tempest.Sea.prototype = {
         }
         if (this.keys.left1.isDown || this.keys.left2.isDown){
             // ship turns left
+            this.ship.turn(-1);
         }else if (this.keys.right1.isDown || this.keys.right2.isDown){
             // ship turns right
+            this.ship.turn(1);
         }
         // adjust ship's position in the world (the teapot)
         // move waves and hazards around the ship
-
+        this.ocean.updateWorld(this.ship.direction);
+        this.lemon.updateWorld(this.ship.direction);
     }
 }

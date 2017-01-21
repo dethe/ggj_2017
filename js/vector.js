@@ -7,6 +7,21 @@
         floor = Math.floor,
         PI = Math.PI;
     var DEGREE = PI / 180;
+
+    // convert degrees to radians
+    function deg2rad(deg) {
+        return deg * DEGREE;
+    }
+
+    function rad2deg(rad) {
+        return rad / DEGREE;
+    }
+
+    // replace JavaScript % operator because of sign conversion
+    function mod(a, b) {
+        return a - floor(a / b) * b;
+    }
+
     // angle between two vectors in radians
     function angle(v1, v2) {
         var diff = v1.radians() - v2.radians();
@@ -74,12 +89,13 @@
         return Vector.fromPolar(degrees, this.magnitude());
     };
 
-    Vector.prototype.rotate = function rotate(radians) {
+    Vector.prototype.rotate = function rotate(degrees) {
+        var radians = this.radians() + deg2rad(degrees);
         var mag = this.magnitude();
         return new Vector(cos(radians) * mag, sin(radians) * mag);
     };
 
-    Vector.prototype.rotateRads = function rotate(rads) {
+    Vector.prototype.rotateRads = function rotateRads(rads) {
         var newAngle = this.radians() + rads;
         var mag = this.magnitude();
         return new Vector(cos(newAngle) * mag, sin(newAngle) * mag);
