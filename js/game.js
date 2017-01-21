@@ -12,6 +12,7 @@ function preload() {
 	// Preload images
 	_game.load.image('wave', './images/wave.png');
 	_game.load.image('ship', './images/ship.png');
+	_game.load.image('lemon', './images/obstacles/lemon.png');
 }
 
 function create() {
@@ -19,9 +20,9 @@ function create() {
 	_game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
 	_game.scale.parentIsWindow = true;
 
-	// Set background color to pink so that it is easy to see where the color bleeds through
-	// This will need to be changed once we make the waves slightly transparent
-	_game.stage.backgroundColor = '#f09';
+	// Set background color
+	_game.stage.backgroundColor = '#09f';
+	_game.stage.backgroundColor = '#fff';
 
 	// Initialize stuff and add them to the game
 	var ocean = new Ocean(_game);
@@ -29,6 +30,10 @@ function create() {
 
 	_game.add.existing(ocean);
 	_game.add.existing(ship);
+
+	var lemon = new Obstacle(_game, 100, 100, 'lemon');
+
+	_game.add.existing(lemon);
 }
 
 function update() {
