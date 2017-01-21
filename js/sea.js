@@ -14,6 +14,12 @@ Tempest.Sea.prototype = {
         this.add.existing(lemon);
 
 		ocean.add(ship);
+
+		ocean.add(lemon);
+
+		var island = new Island(this, 100, 100, 'sugarberg');
+
+		this.add.existing(island);
     },
     update: function update() {
 

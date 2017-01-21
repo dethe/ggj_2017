@@ -28,6 +28,8 @@ Ship.prototype.updatePos = function() {
 
 	this.zIndex = this.y - 30;
 
-	this.y += Math.sin(time * 2.34) * 2;
-	this.angle = Math.sin(time * 1.89 + this.animOffset) * 2;
+	this.angle = 0;
+
+	modulatePosition(this, 0, 2, 2.34);
+	modulateRotation(this, 2, 1.89, this.animOffset);
 }
