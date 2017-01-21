@@ -4,8 +4,6 @@ Tempest.Sea = function(){};
 Tempest.Sea.prototype = {
     create: function create() {
         this.stage.backgroundColor = '#FFF';
-        this.scaleMode = Phaser.ScaleManager.RESIZE;
-        // this.scale.parentIsWindow = true;
 
     	// Add stuff to the game
         var ocean = new Ocean(this);
