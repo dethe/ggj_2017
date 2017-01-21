@@ -8,9 +8,11 @@ Tempest.Preload.prototype = {
     this.preloadBar.anchor.setTo(0.5, 0.5);
     // this.preloadBar.scale.setTo(0.5);
     this.load.setPreloadSprite(this.preloadBar);
-    this.game.load.image('wave', './images/wave.png');
+    this.game.load.image('wave', './images/wave2.png');
 	this.game.load.image('ship', './images/ship.png');
     this.game.load.image('lemon', './images/obstacles/lemon.png');
+
+	this.game.load.image('sugarberg', './images/sugarberg.png')
 },
 create: function(){
     //load game assets

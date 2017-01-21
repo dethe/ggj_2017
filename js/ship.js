@@ -3,7 +3,7 @@ var Ship = function(game) {
 	Phaser.Sprite.call(this, this.game, 0, 0, 'ship');
 	this.scale.set(0.4, 0.4);
 	this.anchor.setTo(0.5, 0.5);
-
+    this.baseAngle = 0;
 	this.animOffset = Math.random() * Math.PI;
     this.worldPos = Vector(-1500, 0);
     this.direction = Vector(1, 0);
@@ -25,6 +25,7 @@ Ship.prototype.update = function() {
 
 Ship.prototype.turn = function(degrees){
     this.direction = this.direction.rotate(degrees);
+    this.baseAngle += degrees;
 };
 
 Ship.prototype.updateWorldPos = function(){
@@ -38,7 +39,6 @@ Ship.prototype.updatePos = function() {
 
 	this.zIndex = this.y - 30;
 
-	this.y += Math.sin(time * 2.34) * 2;
-    console.log(this.direction.degrees());
-	this.angle = Math.sin(time * 1.89 + this.animOffset) * 2 + this.direction.degrees();
+	modulatePosition(this, 0, 2, 2.34);
+	modulateRotation(this, 2, 1.89, this.animOffset);
 }

@@ -2,7 +2,7 @@ var Wave = function(game, x, y) {
 	this.game = game;
 	Phaser.Image.call(this, this.game, x, y, 'wave');
 
-	this.alpha = 0.75;
+	//this.alpha = 1;
 
 	this.scale.setTo(0.4, 0.4);
 
@@ -16,9 +16,9 @@ Wave.prototype = Object.create(Phaser.Image.prototype);
 Wave.prototype.constructor = Wave;
 
 Wave.prototype.update = function() {
-	var time = this.game.time.time / 1000;
-	this.y = this.initialPos.y + Math.sin(time + this.animOffset) * 4;
-	this.x = this.initialPos.x + Math.cos(time + this.animOffset) * 2.5;
+	this.x = this.initialPos.x;
+	this.y = this.initialPos.y;
+	modulatePosition(this, 2.5, 4, 1, this.animOffset);
 }
 
 var Ocean = function(game) {
@@ -28,8 +28,7 @@ var Ocean = function(game) {
 	this.waves = [];
 
 	for(var y = 0; y < 22; y++) {
-		// var offsetX = random(0,100);
-		var offsetX = 0; // FOR NOW, until we fix the wave graphic
+		var offsetX = random(0,120);
 		for(var x = 0; x < 24; x++) {
 			var wave = new Wave(this.game, x * 60 - 40 - offsetX, y * 35 - 60);
 			this.add(wave);
