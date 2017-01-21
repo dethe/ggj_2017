@@ -1,14 +1,16 @@
 var Wave = function(game, x, y) {
 	this.game = game;
-	Phaser.Sprite.call(this, this.game, x, y, 'wave');
+	Phaser.Image.call(this, this.game, x, y, 'wave');
 
 	this.initialPos = { x: x, y: y }; // looks ugly, should be es6 already!
+
 }
 
-Wave.prototype = Object.create(Phaser.Sprite.prototype);
+Wave.prototype = Object.create(Phaser.Image.prototype);
 Wave.prototype.constructor = Wave;
 
-Wave.update = function() {
+Wave.prototype.update = function() {
+	console.log('test');
 	var time = this.game.time.time / 1000;
 	this.y = this.initialPos.y + Math.sin(time) * 100;
 }
