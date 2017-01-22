@@ -9,6 +9,9 @@ var Wave = function(game, x, y, width, height) {
     this.scale.setTo(scaleX, scaleY);
 
 	this.initialPos = { x: x, y: y }; // looks ugly, should be es6 already!
+
+	this.tint = 0xc35918; // ASSAM color
+
 	this.animOffset = Math.random() * Math.PI * 2;
 }
 
