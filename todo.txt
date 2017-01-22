@@ -5,11 +5,11 @@ TODO LIST
 - [X] pick up "obstacles"
 - [ ] slingshot "obstacles" from inventory
 	// selected inventory item is at the centre of the ship, drag, pull back, and release to shoot.
-- [ ] "obstacles" get stirred in at the centre of the Tempest
+- [X] "obstacles" get stirred in at the centre of the Tempest
 - [ ]
 
 - [ ] story/controls popup at beginning
-- [ ] wind vector field
+- [X] wind vector field
 - [ ] wind display UI
 - [ ] current vector field? (or use wind?) moves the waves around rather than sitting in one place
 - [ ] spoon going around and around, don't run into it!
