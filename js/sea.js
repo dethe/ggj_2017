@@ -53,13 +53,12 @@ Tempest.Sea.prototype = {
         this.ocean.updateWorld(this.ship);
         this.seaText.setText(getSea(this.ship.worldPos) + ' Sea');
         var obs = this.hazards[0];
-        this.locationText.setText('x: ' + Math.round(obs.worldPos.x) + ', y: ' + Math.round(obs.worldPos.y) + ', angle: ' + Math.round(obs.worldPos.degrees()) + ', magnitude: ' + Math.round(obs.worldPos.magnitude()));
+        this.locationText.setText('x: ' + Math.round(ship.worldPos.x) + ', y: ' + Math.round(ship.worldPos.y) + ', angle: ' + Math.round(ship.worldPos.degrees()) + ', magnitude: ' + Math.round(ship.worldPos.magnitude()));
 
         var sea = this;
         this.hazards.forEach(function(hazard){
             var dist = Vector.distance(sea.ship.x, sea.ship.y, hazard.x, hazard.y);
             if (dist < 80){
-                console.log('COLLISION');
                 if (sea.ship.cargo.length < 3){
                     sea.ship.cargo.push(hazard);
                     sea.ocean.remove(hazard);

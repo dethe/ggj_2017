@@ -45,6 +45,7 @@ var Wave = function(game, x, y) {
     this.anchor.setTo(0.5, 0.5);
 	this.initialPos = { x: x, y: y }; // looks ugly, should be es6 already!
     this.worldPos = localToWorld(Vector.fromPoint(this.initialPos));
+    this.velocity = Vector(0,0);
 	this.tint = 0xc35918; // ASSAM color
 
 	this.animOffset = Math.random() * Math.PI * 2;
