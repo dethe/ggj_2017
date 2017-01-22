@@ -73,8 +73,7 @@ Ship.prototype.updateWorld = function(){
 };
 
 Ship.prototype.updatePos = function() {
-    // this.velocity = this.velocity.add(currentFromWorld(this.worldPos)).cap(1.0);
-
+    this.velocity = this.velocity.add(shipCurrentFromWorld(this.worldPos)).cap(1.5);
 
     this.worldPos = this.worldPos.add(this.velocity).cap(MAX_RADIUS);
 	if(this.selectedIngredient != undefined) {
