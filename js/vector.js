@@ -70,10 +70,15 @@
         if (this._rad === undefined){
             this._rad = atan2(this.y, this.x);
         }
+        while (this._rad < 0) this._rad += PI * 2;
+        while (this._rad > PI * 2) this._rad -= PI * 2;
         return this._rad;
     };
     Vector.prototype.degrees = function() {
-        return rad2deg(this.radians());
+        if (this._deg === undefined){
+            this._deg = return rad2deg(this.radians());
+        }
+        return this._deg;
     };
 
     // Make magnitude equal to 1

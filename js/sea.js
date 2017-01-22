@@ -41,7 +41,7 @@ Tempest.Sea.prototype = {
         }
         // adjust ship's position in the world (the teapot)
         // move waves and hazards around the ship
-        this.ocean.updateWorld(this.ship.direction);
-        this.lemon.updateWorld(this.ship.direction);
+        this.ocean.updateWorld(this.ship);
+        this.lemon.updateWorld(this.ship);
     }
 }

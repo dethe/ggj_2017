@@ -42,7 +42,7 @@ Gunpowder Sea
     Things to buy: Opium, pepper
     You can get to the Spout from the Gunpowder Sea
 
-Jasmine Sea
+Matcha Sea
     Obstacles: tempest
     Island: None known
     Things to buy: Nothing
@@ -61,9 +61,9 @@ outer seas are truncated by the walls of the teapot, which form a radius of 2000
 
 Ship position should be a vector from 0,0.
 
-If mag(pos) < 1000 ship is in Jasmine Sea.
+If mag(pos) < 866 ship is in Matcha Sea.
 If mag(pos) > 2000 ship has hit the wall of the teapot
-If 
+If
 
 All trade items and base prices:
 

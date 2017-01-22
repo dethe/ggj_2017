@@ -13,17 +13,26 @@ function getSea(x,y){
     var vec = Vector(x,y);
     if (vec.mag() < 866) return 'Matcha';
     if (vec.mag() > 2000) return 'None';
+    if (vec.deg() < 30) return 'Gunpowder';
+    if (vec.deg() < 90) return 'Oolong';
+    if (vec.deg() < 150) return 'Green';
+    if (vec.deg() < 210) return 'Assam';
+    if (vec.deg() < 270) return 'Pekoe';
+    if (vec.deg() < 330) return 'Rooibos';
+    return 'Gunpowder';
 }
 
 var Wave = function(game, x, y) {
 
     var seaColours = {
-        Pekoe: '0x670400',
-        Rooibos: '0xb40905',
-        Assam: '0xc35918',
-        Oolong: '0xf6d47a',
-        Green: '0xbdb840',
-        Matcha: '0x959f3c'
+        Pekoe: 0x670400,
+        Rooibos: 0xb40905,
+        Assam: 0xc35918,
+        Oolong: 0xf6d47a,
+        Green: 0xbdb840,
+        Matcha: 0x959f3c,
+        Gunpowder: 0xd2cec3,
+        None: 0xff69b4
     };
 
 	this.game = game;
@@ -42,7 +51,7 @@ var Wave = function(game, x, y) {
 Wave.prototype = Object.create(Phaser.Image.prototype);
 Wave.prototype.constructor = Wave;
 
-Wave.prototype.updateWorld = function(shipMotion){
+Wave.prototype.updateWorld = function(ship){
     // move the ship
     this.initialPos.x -= shipMotion.x;
     this.initialPos.y -= shipMotion.y;
@@ -67,6 +76,11 @@ Wave.prototype.updateWorld = function(shipMotion){
     }else if(this.initialPos.y > (gh - h)){
         this.initialPos.y -= gh;
     }
+
+    var worldPos = ship.worldPos.add(
+        Vector(this.initialPos.x - ship.initialPos.x, this.initialPos.y - ship.initialPos.y)
+    );
+    this.tint = seaColours[getSea(worldPos.x, worldPos.y)];
 };
 
 Wave.prototype.update = function() {
@@ -99,16 +113,11 @@ Ocean.prototype.constructor = Ocean;
 
 Ocean.prototype.update = function() {
 	Phaser.Group.prototype.update.call(this);
-	//this.children.update();
-	// this.sort('zIndex', Phaser.Group.SORT_ASCENDING);
-	/*this.children.sort(function(a, b) {
-		return b.initialPos.y;
-	});*/
 }
 
-Ocean.prototype.updateWorld = function(shipMotion){
+Ocean.prototype.updateWorld = function(ship){
     this.waves.forEach(function(wave){
-        wave.updateWorld(shipMotion);
+        wave.updateWorld(ship);
     });
     this.children.sort(function(a,b){ return (a.initialPos || a).y - (b.initialPos || b).y; });
     this.children.forEach(function(child, index){ child.z = index; });
