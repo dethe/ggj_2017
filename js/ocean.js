@@ -8,17 +8,23 @@ var waveSize = {
     height: 71
 };
 
-var Wave = function(game, x, y) {
-/*
-COLORS
-Black: 0x670400
-Rooibos: 0xb40905
-Assam: 0xc35918
-Oolong: 0xf6d47a
-Green: 0xbdb840
-Matcha: 0x959f3c
+function getSea(x,y){
+    // x,y in world coordinates, where 0,0 is the center of the Matcha Sea
+    var vec = Vector(x,y);
+    if (vec.mag() < 866) return 'Matcha';
+    if (vec.mag() > 2000) return 'None';
+}
 
-*/
+var Wave = function(game, x, y) {
+
+    var seaColours = {
+        Pekoe: '0x670400',
+        Rooibos: '0xb40905',
+        Assam: '0xc35918',
+        Oolong: '0xf6d47a',
+        Green: '0xbdb840',
+        Matcha: '0x959f3c'
+    };
 
 	this.game = game;
 	Phaser.Image.call(this, this.game, x, y, 'wave');
@@ -58,7 +64,7 @@ Wave.prototype.updateWorld = function(shipMotion){
     }
     if (this.initialPos.y < -h){
         this.initialPos.y += gh;
-    }else if(this.initialPos.y > (gh - h*2)){
+    }else if(this.initialPos.y > (gh - h)){
         this.initialPos.y -= gh;
     }
 };
@@ -105,5 +111,5 @@ Ocean.prototype.updateWorld = function(shipMotion){
         wave.updateWorld(shipMotion);
     });
     this.children.sort(function(a,b){ return (a.initialPos || a).y - (b.initialPos || b).y; });
-    this.children.forEach(function(child, index){ child.z = child.index; });
+    this.children.forEach(function(child, index){ child.z = index; });
 };
