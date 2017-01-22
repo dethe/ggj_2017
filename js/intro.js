@@ -8,10 +8,16 @@ var header_text = 'Tempest in a Teapot';
 var body_text = [
     'Your ship has escaped from the bottle you were imprisoned in by',
     'the witch Sycorax, unfortunately you have fallen into her teapot.',
-    'In the teapot are several seas, islands, and a huge storm called',
-    'the Tempest. Find your way to the spout to escape, while avoiding',
-    'the hazards of sailing the Seven Teas, buying and selling trade',
-    'goods to maximize your treasure when you are finally free.'
+    'In the teapot you can sail the Seven Teas, with a tempest at the centre',
+    'over the Matcha Tea, where Sycorax is perpetually stirring her tea.',
+    'Gather the right ingredients to satisfy Sycorax',
+    'into the Matcha sea and she will finally pour the tea, allowing you to escape.',
+    '',
+    'You need to gather ingredients by sailing over them, but your cargo is limited',
+    'to only 3 items at a time. Steer (difficult due to strong currents) with the',
+    'arrow keys and drag items from your ship to catapult them.',
+    '',
+    'To please Sycorax you will need:'
 ];
 
 var Tempest = Tempest || {};

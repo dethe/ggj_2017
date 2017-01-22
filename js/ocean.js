@@ -42,7 +42,7 @@ var Wave = function(game, x, y) {
 	//this.alpha = 1;
 
     this.scale.setTo(0.4, 0.4);
-    this.anchor.setTo(0.5, 0.5);
+    this.anchor.setTo(0.5, 0.2);
 	this.initialPos = { x: x, y: y }; // looks ugly, should be es6 already!
     this.worldPos = localToWorld(Vector.fromPoint(this.initialPos));
     this.velocity = Vector(0,0);
