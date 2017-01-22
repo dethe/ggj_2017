@@ -30,9 +30,6 @@ Tempest.Sea.prototype = {
             this.hazards.push(lemon);
         }
 
-		this.inputEnabled = true;
-
-
 		//this.island = new Island(this, 100, 100, 'sugarberg');
 		//this.add.existing(this.island);
 		//this.ocean.add(this.island);
