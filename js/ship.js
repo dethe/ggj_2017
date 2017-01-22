@@ -10,7 +10,7 @@ var Ship = function(game) {
     this.velocity = Vector(1, 0);
 
 	setTimeout(function() {
-		this.selectedIngredient = this.game.make.sprite(window.innerWidth/2, window.innerHeight/2, 'lemon');
+		this.selectedIngredient = this.game.make.sprite(window.innerWidth/2, window.innerHeight/2);
 		this.selectedIngredient.scale.set(0.2, 0.2);
 		this.selectedIngredient.anchor.setTo(0.5, 1);
 		this.game.ocean.add(this.selectedIngredient);
@@ -75,6 +75,7 @@ Ship.prototype.updateWorld = function(){
 Ship.prototype.updatePos = function() {
     // this.velocity = this.velocity.add(currentFromWorld(this.worldPos)).cap(1.0);
 
+
     this.worldPos = this.worldPos.add(this.velocity).cap(MAX_RADIUS);
 	if(this.selectedIngredient != undefined) {
 		this.selectedIngredient.worldPos = this.worldPos;
@@ -84,6 +85,11 @@ Ship.prototype.updatePos = function() {
 	this.y = this.game.camera.height / 2;
 
 	if(this.selectedIngredient != undefined) {
+		if(this.cargo.length > 0) {
+			this.selectedIngredient.loadTexture(this.cargo[this.game.selectedHazard].name);
+		}else{
+			this.selectedIngredient.loadTexture(null);
+		}
 		if(this.selectedIngredient.autoCenter) {
 			this.selectedIngredient.x = this.x;
 			this.selectedIngredient.y = this.y + 5;
@@ -102,8 +108,15 @@ Ship.prototype.updatePos = function() {
 			if(this.selectedIngredient.shootVelocity.magnitude() == 0) {
 				this.selectedIngredient.shootVelocity = undefined;
 				this.selectedIngredient.autoCenter = true;
-				var lemon = this.game.ocean.add(new Obstacle(this.game, this.worldPos.getX() + this.selectedIngredient.x - this.game.camera.width/2, this.worldPos.getY() + this.selectedIngredient.y - this.game.camera.height/2));
+				var lemon = this.game.ocean.add(this.cargo[this.game.selectedHazard]);
+				this.cargo[this.game.selectedHazard].inInventory = false;
+				this.cargo[this.game.selectedHazard].worldPos.x = this.worldPos.getX() + this.selectedIngredient.x - this.game.camera.width/2;
+				this.cargo[this.game.selectedHazard].worldPos.y = this.worldPos.getY() + this.selectedIngredient.y - this.game.camera.height/2;
 	            this.game.hazards.push(lemon);
+				this.cargo.splice(this.game.selectedHazard, 1);
+				if(this.game.selectedHazard > 0) {
+					this.game.selectedHazard--;
+				}
 			}
 		}
 	}
