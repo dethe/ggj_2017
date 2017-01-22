@@ -8,32 +8,30 @@ var waveSize = {
     height: 71
 };
 
-function getSea(x,y){
+function getSea(vec){
     // x,y in world coordinates, where 0,0 is the center of the Matcha Sea
-    var vec = Vector(x,y);
-    if (vec.mag() < 866) return 'Matcha';
-    if (vec.mag() > 2000) return 'None';
-    if (vec.deg() < 30) return 'Gunpowder';
-    if (vec.deg() < 90) return 'Oolong';
-    if (vec.deg() < 150) return 'Green';
-    if (vec.deg() < 210) return 'Assam';
-    if (vec.deg() < 270) return 'Pekoe';
-    if (vec.deg() < 330) return 'Rooibos';
+    if (vec.magnitude() < 866) return 'Matcha';
+    if (vec.magnitude() > 2000) return 'None';
+    if (vec.degrees() < 30) return 'Gunpowder';
+    if (vec.degrees() < 90) return 'Oolong';
+    if (vec.degrees() < 150) return 'Green';
+    if (vec.degrees() < 210) return 'Assam';
+    if (vec.degrees() < 270) return 'Pekoe';
+    if (vec.degrees() < 330) return 'Rooibos';
     return 'Gunpowder';
 }
+var seaColours = {
+    Pekoe: 0x670400,
+    Rooibos: 0xb40905,
+    Assam: 0xc35918,
+    Oolong: 0xf6d47a,
+    Green: 0xbdb840,
+    Matcha: 0x959f3c,
+    Gunpowder: 0xd2cec3,
+    None: 0xff69b4
+};
 
 var Wave = function(game, x, y) {
-
-    var seaColours = {
-        Pekoe: 0x670400,
-        Rooibos: 0xb40905,
-        Assam: 0xc35918,
-        Oolong: 0xf6d47a,
-        Green: 0xbdb840,
-        Matcha: 0x959f3c,
-        Gunpowder: 0xd2cec3,
-        None: 0xff69b4
-    };
 
 	this.game = game;
 	Phaser.Image.call(this, this.game, x, y, 'wave');
@@ -53,8 +51,8 @@ Wave.prototype.constructor = Wave;
 
 Wave.prototype.updateWorld = function(ship){
     // move the ship
-    this.initialPos.x -= shipMotion.x;
-    this.initialPos.y -= shipMotion.y;
+    this.initialPos.x -= ship.direction.x;
+    this.initialPos.y -= ship.direction.y;
 
     // just to make the tests below shorter
     var w = waveSize.width;
@@ -78,9 +76,10 @@ Wave.prototype.updateWorld = function(ship){
     }
 
     var worldPos = ship.worldPos.add(
-        Vector(this.initialPos.x - ship.initialPos.x, this.initialPos.y - ship.initialPos.y)
+        Vector(this.initialPos.x - this.game.camera.width / 2, this.initialPos.y - this.game.camera.width / 2)
     );
-    this.tint = seaColours[getSea(worldPos.x, worldPos.y)];
+    var sea = getSea(worldPos);
+    this.tint = seaColours[getSea(worldPos)];
 };
 
 Wave.prototype.update = function() {

@@ -76,8 +76,9 @@
     };
     Vector.prototype.degrees = function() {
         if (this._deg === undefined){
-            this._deg = return rad2deg(this.radians());
+            this._deg = rad2deg(this.radians());
         }
+        if (this._deg < 0) this._deg += 360;
         return this._deg;
     };
 
