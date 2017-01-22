@@ -1,13 +1,20 @@
-var Wave = function(game, x, y, width, height) {
+var wavesPerRow = 24;
+var wavesPerColumn = 22;
+
+var waveSize = {
+    dx: 80,
+    dy: 35,
+    width: 90,
+    height: 71
+};
+
+var Wave = function(game, x, y) {
 	this.game = game;
 	Phaser.Image.call(this, this.game, x, y, 'wave');
 
 	//this.alpha = 1;
 
-    var scaleX = width / this.width * 1.5;
-    var scaleY = height / this.height * 1.5;
-    this.scale.setTo(scaleX, scaleY);
-
+    this.scale.setTo(0.4, 0.4);
 	this.initialPos = { x: x, y: y }; // looks ugly, should be es6 already!
 
 	this.tint = 0xc35918; // ASSAM color
@@ -19,21 +26,29 @@ Wave.prototype = Object.create(Phaser.Image.prototype);
 Wave.prototype.constructor = Wave;
 
 Wave.prototype.updateWorld = function(shipMotion){
-    var w = this.width;
-    var h = this.height;
-    var gw = this.game.scale.bounds.width;
-    var gh = this.game.scale.bounds.height;
+    // move the ship
     this.initialPos.x -= shipMotion.x;
     this.initialPos.y -= shipMotion.y;
+
+    // just to make the tests below shorter
+    var w = waveSize.width;
+    var h = waveSize.height;
+    var dx = waveSize.dx; // wave offset per column
+    var dy = waveSize.dy; // wave offset per row
+    var gw = dx * wavesPerRow;
+    var gh = dy * wavesPerColumn;
+
+    // test going out of bounds and move to the other side of the screen
+    // do this just slightly off-screen for a smooth experience
     if (this.initialPos.x < -w ){
-        this.initialPos.x += gw + w * 2;
-    }else if (this.initialPos.x > gw + h){
-        this.initialPos.x -= gw + w * 2;
+        this.initialPos.x += gw;
+    }else if (this.initialPos.x > (gw - w)){
+        this.initialPos.x -= gw;
     }
     if (this.initialPos.y < -h){
-        this.initialPos.y += gh + h * 2;
-    }else if(this.initialPos.y > gh + h){
-        this.initialPos.y -= gh + h * 2;
+        this.initialPos.y += gh;
+    }else if(this.initialPos.y > (gh - h*2)){
+        this.initialPos.y -= gh;
     }
 };
 
@@ -46,27 +61,15 @@ Wave.prototype.update = function() {
 var Ocean = function(game) {
 	this.game = game;
 	Phaser.Group.call(this, this.game);
-    var display = {
-        width: game.scale.bounds.width,
-        height: game.scale.bounds.height
-    }
-    var wavesPerRow = 24;
-    var wavesPerColumn = 22;
-    var waveSize = {
-        width: display.width / (wavesPerRow - 1), // for overlap
-        height: display.height / (wavesPerColumn - 1)
-    };
 
 	this.waves = [];
 
-	for(var y = -1; y < 23; y++) {
+	for(var y = -1; y < wavesPerColumn-1; y++) {
 		var offsetX = random(0,120);
-		for(var x = -1; x < 25; x++) {
+		for(var x = -1; x < wavesPerRow-1; x++) {
 			var wave = new Wave(
-                this.game, x * waveSize.width - offsetX,
-                y * waveSize.height,
-                waveSize.width,
-                waveSize.height
+                this.game, x * waveSize.dx - offsetX,
+                y * waveSize.dy
             );
 			this.add(wave);
 			this.waves.push(wave);
