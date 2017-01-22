@@ -32,7 +32,7 @@
         // absolute distance between two points
         var dx = x1 - x2;
         var dy = y1 - y2;
-        sqrt(dx * dx + dy * dy);
+        return sqrt(dx * dx + dy * dy);
     }
 
     // Create a vector from an x,y position
@@ -51,6 +51,8 @@
     Vector.fromPoint = function(pt) {
         return new Vector(pt.x, pt.y);
     };
+
+    Vector.distance = dist;
 
     Vector.prototype.getX = function() {
         return this.x;
@@ -92,6 +94,11 @@
         return multiply(this, 1 / mag);
     };
 
+    // Make magnitude equal to value
+    Vector.prototype.setMagnitude = function(value){
+        return Vector.fromPolar(this.degrees(), value);
+    };
+
     Vector.prototype.rotateTo = function rotateTo(degrees) {
         return Vector.fromPolar(degrees, this.magnitude());
     };
@@ -112,6 +119,9 @@
         return new Vector(this.x + vec2.x, this.y + vec2.y);
     };
 
+    Vector.prototype.subtract = function(vec2) {
+        return new Vector(this.x - vec2.x, this.y - vec2.y);
+    };
 
     Vector.prototype.toString = function strv() {
         return '<' + this.x + ',' + this.y + '>';

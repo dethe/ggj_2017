@@ -12,3 +12,12 @@ function modulateRotation(object, magnitude, speed, animOffset) {
 	var time = object.game.time.time / 1000 * (speed || 1);
 	object.angle += Math.sin(time * 1.89 + (animOffset || 0)) * (magnitude || 0);
 }
+
+// properly delete from a list
+function deleteItem(list, item) {
+    var idx = list.indexOf(item);
+    if (idx > -1) {
+        list.splice(idx, 1);
+    }
+    return item;
+}

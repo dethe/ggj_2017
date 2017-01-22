@@ -2,9 +2,9 @@ var Obstacle = function(game, x, y, name) {
 	this.game = game;
 	Phaser.Sprite.call(this, this.game, x, y, name);
 	this.scale.set(0.4, 0.4);
+    this.anchor.setTo(0.5, 0.5);
 
 	this.initialPos = {x: x, y: y};
-	this.zIndex = this.initialPos.y - 35;
 
 	this.animOffset = Math.random() * Math.PI;
 

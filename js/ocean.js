@@ -1,6 +1,7 @@
 var wavesPerRow = 24;
 var wavesPerColumn = 22;
 
+var TEMPEST_RADIUS = 866;
 var MAX_RADIUS = 2000;
 
 var waveSize = {
@@ -12,7 +13,7 @@ var waveSize = {
 
 function getSea(vec){
     // x,y in world coordinates, where 0,0 is the center of the Matcha Sea
-    if (vec.magnitude() < 866) return 'Matcha';
+    if (vec.magnitude() < TEMPEST_RADIUS) return 'Matcha';
     if (vec.magnitude() > MAX_RADIUS) return 'None';
     if (vec.degrees() < 30) return 'Gunpowder';
     if (vec.degrees() < 90) return 'Rooibos';
@@ -41,6 +42,7 @@ var Wave = function(game, x, y) {
 	//this.alpha = 1;
 
     this.scale.setTo(0.4, 0.4);
+    this.anchor.setTo(0.5, 0.5);
 	this.initialPos = { x: x, y: y }; // looks ugly, should be es6 already!
 
 	this.tint = 0xc35918; // ASSAM color
@@ -78,7 +80,7 @@ Wave.prototype.updateWorld = function(ship){
     }
 
     var worldPos = ship.worldPos.add(
-        Vector(this.initialPos.x - this.game.camera.width / 2, this.initialPos.y - this.game.camera.width / 2)
+        Vector(this.initialPos.x - this.game.camera.width / 2, this.initialPos.y - this.game.camera.height / 2)
     );
     var sea = getSea(worldPos);
     if (sea === 'None'){

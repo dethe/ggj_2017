@@ -1,5 +1,5 @@
 function randomVector(){
-    return Vector.fromPolar(random(0,360), MAX_RADIUS);
+    return Vector.fromPolar(random(0,360), random(TEMPEST_RADIUS + 50, MAX_RADIUS - 100));
 }
 
 var Tempest = Tempest || {};
@@ -12,22 +12,19 @@ Tempest.Sea.prototype = {
     	// Add stuff to the game
         this.ocean = new Ocean(this);
     	this.ship = new Ship(this);
-        // this.lemon = new Obstacle(this, 500, 200, 'lemon');
         this.add.existing(this.ocean);
 
-    	//this.add.existing(ship);
-        // this.add.existing(this.lemon);
+        this.hazards = [];
+
 		this.ocean.add(this.ship);
         for (var i = 0; i < 12; i++){
             var loc = randomVector();
-            this.ocean.add(new Obstacle(this, loc.x, loc.y, 'lemon'));
+            var lemon = this.ocean.add(new Obstacle(this, loc.x, loc.y, 'lemon'));
+            this.hazards.push(lemon);
         }
-		// this.ocean.add(this.lemon);
 
 		//this.island = new Island(this, 100, 100, 'sugarberg');
-
 		//this.add.existing(this.island);
-
 		//this.ocean.add(this.island);
 
         this.keys = this.input.keyboard.addKeys({
@@ -53,10 +50,24 @@ Tempest.Sea.prototype = {
         // adjust ship's position in the world (the teapot)
         // move waves and hazards around the ship
         this.ship.updateWorldPos();
-
         this.ocean.updateWorld(this.ship);
-        // this.lemon.updateWorld(this.ship);
         this.seaText.setText(getSea(this.ship.worldPos) + ' Sea');
         this.locationText.setText('x: ' + Math.round(this.ship.worldPos.x) + ', y: ' + Math.round(this.ship.worldPos.y) + ', angle: ' + Math.round(this.ship.worldPos.degrees()) + ', magnitude: ' + Math.round(this.ship.worldPos.magnitude()));
+
+        var sea = this;
+        this.hazards.forEach(function(hazard){
+            var dist = Vector.distance(sea.ship.x, sea.ship.y, hazard.x, hazard.y);
+            if (dist < 80){
+                console.log('COLLISION');
+                if (sea.ship.cargo.length < 3){
+                    sea.ship.cargo.push(hazard);
+                    sea.ocean.remove(hazard);
+                    sea.add.existing(hazard);
+                    hazard.x = 50 * (sea.ship.cargo.length -1);
+                    hazard.y = sea.game.camera.height;
+                    deleteItem(sea.hazards, hazard);
+                }
+            }
+        });
     }
 }
