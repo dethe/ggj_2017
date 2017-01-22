@@ -1,6 +1,9 @@
+var obstacleNames = ['cookie', 'darkchocolate', 'ice', 'lemon', 'milk', 'mint', 'sugarcube'];
+
 var Obstacle = function(game, x, y, name) {
+	this.name = name || obstacleNames[random(0, obstacleNames.length - 1)];
 	this.game = game;
-	Phaser.Sprite.call(this, this.game, x, y, name);
+	Phaser.Sprite.call(this, this.game, x, y, this.name);
 	this.scale.set(0.4, 0.4);
 
 	this.initialPos = {x: x, y: y};

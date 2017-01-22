@@ -9,7 +9,15 @@ Tempest.Preload.prototype = {
     // this.preloadBar.scale.setTo(0.5);
     this.load.setPreloadSprite(this.preloadBar);
     this.game.load.image('wave', './images/wave2.png');
+
+	// obstacles
     this.game.load.image('lemon', './images/obstacles/lemon.png');
+	this.game.load.image('milk', './images/obstacles/milk.png');
+	this.game.load.image('mint', './images/obstacles/mint.png');
+	this.game.load.image('cookie', './images/obstacles/cookie.png');
+	this.game.load.image('darkchocolate', './images/obstacles/darkchocolate.png');
+	this.game.load.image('ice', './images/obstacles/ice.png');
+	this.game.load.image('sugarcube', './images/obstacles/sugarcube.png');
 
 	// ship
 	this.game.load.image('shipW', './images/ship/W.png');

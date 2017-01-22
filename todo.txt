@@ -2,7 +2,7 @@ TODO LIST
 
 - [X] figure out gameplay and goals
 
-- [ ] pick up "obstacles"
+- [X] pick up "obstacles"
 - [ ] slingshot "obstacles" from inventory
 	// selected inventory item is at the centre of the ship, drag, pull back, and release to shoot.
 - [ ] "obstacles" get stirred in at the centre of the Tempest
@@ -19,14 +19,13 @@ ART TODO
 
 - [X] lemon
 - [X] small sugar cube
-- [ ] more obstacles
-	- [ ] ?
-- [ ] ship (in 8 directions)
+- [X] more obstacles
+- [X] ship (in 8 directions)
 	- [X] E/W
 	- [X] NE/NW
-	- [ ] N
-	- [ ] SE/SW
-	- [ ] S
+	- [X] N
+	- [X] SE/SW
+	- [X] S
 - [ ] giant spoon
 - [X] wind meter
 - [ ] inventory slots
