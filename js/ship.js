@@ -21,7 +21,7 @@ Ship.prototype.update = function() {
 	//var dt = this.game.time.
 
 	var texIndex = Math.floor((360-this.velocity.degrees()+22.5) / 45) % 8;
-	console.log(texIndex);
+	//console.log(texIndex);
 	this.loadTexture(this.directionList[texIndex]);
 
 	/*this.x = game.camera.width / 2;
@@ -43,7 +43,8 @@ Ship.prototype.updatePos = function() {
 	this.y = this.game.camera.height / 2;
 
 	this.zIndex = this.y - 30;
-    this.angle = (this.baseAngle + 22.5) % 45 - 22.5;
+    this.angle = (this.velocity.degrees() + 22.5) % 45 - 22.5;
+	//console.log(this.angle);
 
     //this.angle = this.baseAngle;
 

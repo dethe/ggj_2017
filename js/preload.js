@@ -15,7 +15,7 @@ Tempest.Preload.prototype = {
 	this.game.load.image('shipW', './images/ship/W.png');
 	this.game.load.image('shipE', './images/ship/E.png');
 	this.game.load.image('shipNW', './images/ship/NW.png');
-	this.game.load.image('shipNW', './images/ship/NE.png');
+	this.game.load.image('shipNE', './images/ship/NE.png');
 
 	// islands
 	this.game.load.image('sugarberg', './images/sugarberg.png');
