@@ -28,7 +28,8 @@ Tempest.Sea.prototype = {
             'right1': Phaser.KeyCode.D, 'right2': Phaser.KeyCode.RIGHT
         });
 
-        this.seaText = this.add.text(50, 50, "Assam Sea", {font: '18pt Helvetica', fill: '#000'});
+        this.seaText = this.add.text(50, 50, "Assam Sea", {font: '18pt Helvetica', fill: '#FFF'});
+        this.locationText = this.add.text(50, 80, "", {font: '14pt Helvetica', fill: '#FFF'});
     },
     update: function update() {
         if (this.keys.forward1.isDown || this.keys.forward2.isDown){
@@ -46,5 +47,6 @@ Tempest.Sea.prototype = {
         this.ocean.updateWorld(this.ship);
         this.lemon.updateWorld(this.ship);
         this.seaText.setText(getSea(this.ship.worldPos) + ' Sea');
+        this.locationText.setText('x: ' + Math.round(this.ship.worldPos.x) + ', y: ' + Math.round(this.ship.worldPos.y) + ', angle: ' + Math.round(this.ship.worldPos.degrees()) + ', magnitude: ' + Math.round(this.ship.worldPos.magnitude()));
     }
 }

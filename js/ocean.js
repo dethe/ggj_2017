@@ -13,11 +13,11 @@ function getSea(vec){
     if (vec.magnitude() < 866) return 'Matcha';
     if (vec.magnitude() > 2000) return 'None';
     if (vec.degrees() < 30) return 'Gunpowder';
-    if (vec.degrees() < 90) return 'Oolong';
-    if (vec.degrees() < 150) return 'Green';
+    if (vec.degrees() < 90) return 'Rooibos';
+    if (vec.degrees() < 150) return 'Pekoe';
     if (vec.degrees() < 210) return 'Assam';
-    if (vec.degrees() < 270) return 'Pekoe';
-    if (vec.degrees() < 330) return 'Rooibos';
+    if (vec.degrees() < 270) return 'Green';
+    if (vec.degrees() < 330) return 'Oolong';
     return 'Gunpowder';
 }
 var seaColours = {
