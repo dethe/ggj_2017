@@ -79,6 +79,11 @@ Wave.prototype.updateWorld = function(ship){
         Vector(this.initialPos.x - this.game.camera.width / 2, this.initialPos.y - this.game.camera.width / 2)
     );
     var sea = getSea(worldPos);
+    if (sea === 'None'){
+        this.visible = false;
+    }else{
+        this.visible = true;
+    }
     this.tint = seaColours[getSea(worldPos)];
 };
 

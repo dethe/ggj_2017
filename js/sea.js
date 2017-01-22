@@ -8,7 +8,7 @@ Tempest.Sea.prototype = {
     	// Add stuff to the game
         this.ocean = new Ocean(this);
     	this.ship = new Ship(this);
-        this.lemon = new Obstacle(this, 100, 100, 'lemon');
+        this.lemon = new Obstacle(this, 500, 200, 'lemon');
         this.add.existing(this.ocean);
 
     	//this.add.existing(ship);
