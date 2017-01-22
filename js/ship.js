@@ -6,7 +6,7 @@ var Ship = function(game) {
     this.baseAngle = 0;
 	this.animOffset = Math.random() * Math.PI;
     this.worldPos = Vector(-1500, 0);
-    this.direction = Vector(1, 0);
+    this.direction = Vector(0.4, 0);
 	this.updatePos();
 }
 
@@ -38,7 +38,7 @@ Ship.prototype.updatePos = function() {
 	this.y = this.game.camera.height / 2;
 
 	this.zIndex = this.y - 30;
-
+    this.angle = this.baseAngle;
 	modulatePosition(this, 0, 2, 2.34);
 	modulateRotation(this, 2, 1.89, this.animOffset);
 }

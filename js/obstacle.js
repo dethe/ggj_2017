@@ -21,6 +21,6 @@ Obstacle.prototype.update = function() {
 }
 
 Obstacle.prototype.updateWorld = function(shipMotion) {
-    this.x -= shipMotion.x;
-    this.y -= shipMotion.y;
+    this.initialPos.x -= shipMotion.x;
+    this.initialPos.y -= shipMotion.y;
 };
