@@ -59,7 +59,6 @@ Tempest.Sea.prototype = {
         this.hazards.forEach(function(hazard){
             var dist = Vector.distance(sea.ship.x, sea.ship.y, hazard.x, hazard.y);
             if (dist < 80){
-                console.log('COLLISION');
                 if (sea.ship.cargo.length < 3){
                     sea.ship.cargo.push(hazard);
                     sea.ocean.remove(hazard);

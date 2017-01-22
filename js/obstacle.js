@@ -19,9 +19,8 @@ Obstacle.prototype = Object.create(Phaser.Sprite.prototype);
 Obstacle.prototype.constructor = Obstacle;
 
 Obstacle.prototype.updatePos = function(){
-    this.velocity = this.velocity.add(currentFromWorld(this.worldPos)).cap(1.0);
-    console.log('Velocity: %s', this.velocity);
-    this.worldPos.add(this.velocity).cap(MAX_RADIUS);
+    this.velocity = currentFromWorld(this.worldPos).cap(1.0);
+    this.worldPos = this.worldPos.add(this.velocity).cap(MAX_RADIUS);
     this.initialPos = worldToLocal(this.worldPos);
 }
 
