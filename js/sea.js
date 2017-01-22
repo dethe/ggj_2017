@@ -42,10 +42,10 @@ Tempest.Sea.prototype = {
         }
         if (this.keys.left1.isDown || this.keys.left2.isDown){
             // ship turns left
-            this.ship.turn(-1);
+            this.ship.turn(-2);
         }else if (this.keys.right1.isDown || this.keys.right2.isDown){
             // ship turns right
-            this.ship.turn(1);
+            this.ship.turn(2);
         }
         // adjust ship's position in the world (the teapot)
         // move waves and hazards around the ship
