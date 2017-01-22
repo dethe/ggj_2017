@@ -6,6 +6,11 @@ var Tempest = Tempest || {};
 Tempest.Sea = function(){};
 //setting game configuration and loading the assets for the loading screen
 Tempest.Sea.prototype = {
+    getGoal: function(){
+        return [1,2,3,4,5].map(function(){
+            return _.sample(obstacleNames);
+        }).sort();
+    },
     create: function create() {
         this.stage.backgroundColor = '#FFF';
 
@@ -36,10 +41,12 @@ Tempest.Sea.prototype = {
 
         this.seaText = this.add.text(50, 50, "Assam Sea", {font: '18pt Helvetica', fill: '#FFF', stroke: '#000', strokeThickness: 2});
         this.locationText = this.add.text(50, 80, "", {font: '14pt Helvetica', fill: '#FFF', stroke: '#000', strokeThickness: 2});
-        this.placedIngredientsText = this.add.text(this.game.camera.width - 200, 50, "", {font: '14pt Helvetica', fill: '#FFF', stroke: '#000', strokeThickness: 2});
+        this.goal = this.getGoal();
+        this.goalText = this.add.text(this.game.camera.width / 2, 50, 'Goal: ' + this.goal.join(', '), {font: '14pt Helvetica', fill: '#FFF', stroke: '#000', strokeThickness: 2})
+        this.placedIngredientsText = this.add.text(this.game.camera.width / 2, 80, "", {font: '14pt Helvetica', fill: '#FFF', stroke: '#000', strokeThickness: 2});
     },
     getIngredientsInTempest: function(){
-        return _.pluck(this.hazards.filter(function(hazard){ return hazard.worldPos.magnitude() < TEMPEST_RADIUS; }), 'key');
+        return _.pluck(this.hazards.filter(function(hazard){ return hazard.worldPos.magnitude() < TEMPEST_RADIUS; }), 'key').sort();
     },
     update: function update() {
         if (this.keys.forward1.isDown || this.keys.forward2.isDown){
@@ -57,9 +64,13 @@ Tempest.Sea.prototype = {
         this.ship.updateWorldPos();
         this.ocean.updateWorld(this.ship);
         this.seaText.setText(getSea(this.ship.worldPos) + ' Sea');
-        this.placedIngredientsText.setText(this.getIngredientsInTempest().join('\n'));
+        var goalProgress = this.getIngredientsInTempest();
+        if (_.isEqual(this.goal, goalProgress)){
+            this.state.start('Win');
+        }
+        this.placedIngredientsText.setText('Progress: ' + goalProgress.join(', '));
         var obs = this.hazards[0];
-        this.locationText.setText('x: ' + Math.round(ship.worldPos.x) + ', y: ' + Math.round(ship.worldPos.y) + ', angle: ' + Math.round(ship.worldPos.degrees()) + ', magnitude: ' + Math.round(ship.worldPos.magnitude()));
+        // this.locationText.setText('x: ' + Math.round(ship.worldPos.x) + ', y: ' + Math.round(ship.worldPos.y) + ', angle: ' + Math.round(ship.worldPos.degrees()) + ', magnitude: ' + Math.round(ship.worldPos.magnitude()));
 
         var sea = this;
         this.hazards.forEach(function(hazard){

@@ -39,6 +39,6 @@ create: function(){
     this.stage.backgroundColor = '#000';
 
     // initialize stuff
-    this.state.start('Sea');
+    this.state.start('Intro');
   }
 };
