@@ -90,6 +90,6 @@ Ocean.prototype.updateWorld = function(shipMotion){
     this.waves.forEach(function(wave){
         wave.updateWorld(shipMotion);
     });
-    this.children.sort(function(a,b){ return a.y - b.y; });
+    this.children.sort(function(a,b){ return (a.initialPosition || a).y - (b.initialPosition || b).y; });
     this.children.forEach(function(child, index){ child.z = child.index; });
 };
