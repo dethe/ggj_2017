@@ -1,18 +1,33 @@
 TODO LIST
 
-- [ ] figure out gameplay and goals
+- [X] figure out gameplay and goals
 
-- [ ] wave scrolling
-- [ ] separate bobbing into reusable function
-- [ ] islands
-	- cut island image into separate images at different z-indexes?
--
+- [ ] pick up "obstacles"
+- [ ] slingshot "obstacles" from inventory
+	// selected inventory item is at the centre of the ship, drag, pull back, and release to shoot.
+- [ ] "obstacles" get stirred in at the centre of the Tempest
+- [ ]
+
+- [ ] story/controls popup at beginning
+- [ ] wind vector field
+- [ ] wind display UI
+- [ ] current vector field? (or use wind?) moves the waves around rather than sitting in one place
+- [ ] spoon going around and around, don't run into it!
+
 
 ART TODO
 
 - [X] lemon
 - [X] small sugar cube
-- [ ] new waves
-- [ ] ship(s) (in 8 directions)
-- [ ] islands
--
+- [ ] more obstacles
+	- [ ] ?
+- [ ] ship (in 8 directions)
+	- [X] E/W
+	- [X] NE/NW
+	- [ ] N
+	- [ ] SE/SW
+	- [ ] S
+- [ ] giant spoon
+- [X] wind meter
+- [ ] inventory slots
+- [ ] islands?
