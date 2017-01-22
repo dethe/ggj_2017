@@ -1,6 +1,6 @@
 var Ship = function(game) {
 	this.game = game;
-	Phaser.Sprite.call(this, this.game, 0, 0, 'shipE');
+	Phaser.Sprite.call(this, this.game, 0, 0, 'ship');
 	this.directionList = ['shipE', 'shipNE','shipN','shipNW','shipW','shipSW','shipS','shipSE'];
 	this.scale.set(0.4, 0.4);
 	this.anchor.setTo(0.5, 0.5);
@@ -16,7 +16,6 @@ Ship.prototype.constructor = Ship;
 
 Ship.prototype.update = function() {
 
-    this.updateWorldPos();
 	this.updatePos();
 	//var dt = this.game.time.
 
@@ -35,6 +34,10 @@ Ship.prototype.turn = function(degrees){
 
 Ship.prototype.updateWorldPos = function(){
     this.worldPos = this.worldPos.add(this.velocity);
+};
+
+Ship.prototype.updateWorld = function(){
+    // Do Nothing
 };
 
 Ship.prototype.updatePos = function() {

@@ -44,7 +44,8 @@
         this.y = y;
     }
 
-    Vector.fromPolar = function(radians, mag) {
+    Vector.fromPolar = function(degrees, mag) {
+        var radians = deg2rad(degrees);
         return new Vector(cos(radians) * mag, sin(radians) * mag);
     };
     Vector.fromPoint = function(pt) {

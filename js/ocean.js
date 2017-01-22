@@ -1,6 +1,8 @@
 var wavesPerRow = 24;
 var wavesPerColumn = 22;
 
+var MAX_RADIUS = 2000;
+
 var waveSize = {
     dx: 80,
     dy: 35,
@@ -11,7 +13,7 @@ var waveSize = {
 function getSea(vec){
     // x,y in world coordinates, where 0,0 is the center of the Matcha Sea
     if (vec.magnitude() < 866) return 'Matcha';
-    if (vec.magnitude() > 2000) return 'None';
+    if (vec.magnitude() > MAX_RADIUS) return 'None';
     if (vec.degrees() < 30) return 'Gunpowder';
     if (vec.degrees() < 90) return 'Rooibos';
     if (vec.degrees() < 150) return 'Pekoe';
@@ -119,10 +121,17 @@ Ocean.prototype.update = function() {
 	Phaser.Group.prototype.update.call(this);
 }
 
+function getY(obj){
+    if (obj.initialPos !== undefined){
+        return obj.initialPos.y;
+    }
+    return obj.y;
+}
+
 Ocean.prototype.updateWorld = function(ship){
-    this.waves.forEach(function(wave){
-        wave.updateWorld(ship);
+    this.children.forEach(function(child){
+        child.updateWorld(ship);
     });
-    this.children.sort(function(a,b){ return (a.initialPos || a).y - (b.initialPos || b).y; });
+    this.children = _.sortBy(this.children, getY);
     this.children.forEach(function(child, index){ child.z = index; });
 };

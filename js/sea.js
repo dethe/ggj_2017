@@ -1,3 +1,7 @@
+function randomVector(){
+    return Vector.fromPolar(random(0,360), MAX_RADIUS);
+}
+
 var Tempest = Tempest || {};
 Tempest.Sea = function(){};
 //setting game configuration and loading the assets for the loading screen
@@ -8,13 +12,17 @@ Tempest.Sea.prototype = {
     	// Add stuff to the game
         this.ocean = new Ocean(this);
     	this.ship = new Ship(this);
-        this.lemon = new Obstacle(this, 500, 200, 'lemon');
+        // this.lemon = new Obstacle(this, 500, 200, 'lemon');
         this.add.existing(this.ocean);
 
     	//this.add.existing(ship);
-        this.add.existing(this.lemon);
+        // this.add.existing(this.lemon);
 		this.ocean.add(this.ship);
-		this.ocean.add(this.lemon);
+        for (var i = 0; i < 12; i++){
+            var loc = randomVector();
+            this.ocean.add(new Obstacle(this, loc.x, loc.y, 'lemon'));
+        }
+		// this.ocean.add(this.lemon);
 
 		//this.island = new Island(this, 100, 100, 'sugarberg');
 
@@ -28,8 +36,8 @@ Tempest.Sea.prototype = {
             'right1': Phaser.KeyCode.D, 'right2': Phaser.KeyCode.RIGHT
         });
 
-        this.seaText = this.add.text(50, 50, "Assam Sea", {font: '18pt Helvetica', fill: '#FFF', stroke: '#000'});
-        this.locationText = this.add.text(50, 80, "", {font: '14pt Helvetica', fill: '#FFF', stroke: '#000'});
+        this.seaText = this.add.text(50, 50, "Assam Sea", {font: '18pt Helvetica', fill: '#FFF', stroke: '#000', strokeThickness: 2});
+        this.locationText = this.add.text(50, 80, "", {font: '14pt Helvetica', fill: '#FFF', stroke: '#000', strokeThickness: 2});
     },
     update: function update() {
         if (this.keys.forward1.isDown || this.keys.forward2.isDown){
@@ -44,10 +52,10 @@ Tempest.Sea.prototype = {
         }
         // adjust ship's position in the world (the teapot)
         // move waves and hazards around the ship
-
+        this.ship.updateWorldPos();
 
         this.ocean.updateWorld(this.ship);
-        this.lemon.updateWorld(this.ship);
+        // this.lemon.updateWorld(this.ship);
         this.seaText.setText(getSea(this.ship.worldPos) + ' Sea');
         this.locationText.setText('x: ' + Math.round(this.ship.worldPos.x) + ', y: ' + Math.round(this.ship.worldPos.y) + ', angle: ' + Math.round(this.ship.worldPos.degrees()) + ', magnitude: ' + Math.round(this.ship.worldPos.magnitude()));
     }
