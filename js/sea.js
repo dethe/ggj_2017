@@ -12,6 +12,7 @@ Tempest.Sea.prototype = {
         }).sort();
     },
     create: function create() {
+        console.log('Created Sea');
         this.stage.backgroundColor = '#FFF';
 
     	// Add stuff to the game
@@ -56,10 +57,12 @@ Tempest.Sea.prototype = {
             // ship moves forward
         }
         if (this.keys.left1.isDown || this.keys.left2.isDown){
+            console.log('turn left');
             // ship turns left
             this.ship.turn(-2);
         }else if (this.keys.right1.isDown || this.keys.right2.isDown){
             // ship turns right
+            console.log('turn right');
             this.ship.turn(2);
         }
         // adjust ship's position in the world (the teapot)
@@ -68,7 +71,7 @@ Tempest.Sea.prototype = {
         this.ocean.updateWorld(this.ship);
         this.seaText.setText(getSea(this.ship.worldPos) + ' Sea');
         var goalProgress = this.getIngredientsInTempest();
-        if (_.isEqual(this.goal, goalProgress)){
+        if (this.goal && _.isEqual(this.goal, goalProgress)){
             this.state.start('Win');
         }
         this.placedIngredientsText.setText('Progress: ' + goalProgress.join(', '));

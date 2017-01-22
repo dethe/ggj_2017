@@ -24,6 +24,7 @@ var Tempest = Tempest || {};
 Tempest.Intro = function(){};
 Tempest.Intro.prototype = {
     create: function(){
+        console.log('Created Intro');
         var game = this;
         game.add.text(text_x, 50, header_text, header_font);
         body_text.forEach(function(text, index){

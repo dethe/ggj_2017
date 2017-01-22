@@ -37,5 +37,5 @@ function currentFromWorld(vec){
 }
 
 function shipCurrentFromWorld(vec){
-    return Vector.fromPolar(vec.degrees() - 85, (1.0 - vec.magnitude() / MAX_RADIUS) / 10);
+    return Vector.fromPolar(vec.degrees() - 85, (1.0 - vec.magnitude() / MAX_RADIUS) / 100);
 }
