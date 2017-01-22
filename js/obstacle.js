@@ -7,11 +7,10 @@ var Obstacle = function(game, x, y, name) {
 	this.scale.set(0.4, 0.4);
     this.anchor.setTo(0.5, 0.5);
 
-	this.initialPos = {x: x, y: y};
+    this.worldPos = Vector(x,y);
+	this.initialPos = worldToLocal(this.worldPos);
 
 	this.animOffset = Math.random() * Math.PI;
-
-	this.anchor.setTo(0.5, 0.5);
 }
 
 Obstacle.prototype = Object.create(Phaser.Sprite.prototype);
@@ -26,4 +25,5 @@ Obstacle.prototype.update = function() {
 Obstacle.prototype.updateWorld = function(ship) {
     this.initialPos.x -= ship.velocity.x;
     this.initialPos.y -= ship.velocity.y;
+    this.worldPos = localToWorld(Vector.fromPoint(this.initialPos));
 };

@@ -44,7 +44,7 @@ var Wave = function(game, x, y) {
     this.scale.setTo(0.4, 0.4);
     this.anchor.setTo(0.5, 0.5);
 	this.initialPos = { x: x, y: y }; // looks ugly, should be es6 already!
-
+    this.worldPos = localToWorld(Vector.fromPoint(this.initialPos));
 	this.tint = 0xc35918; // ASSAM color
 
 	this.animOffset = Math.random() * Math.PI * 2;
@@ -79,9 +79,7 @@ Wave.prototype.updateWorld = function(ship){
         this.initialPos.y -= gh;
     }
 
-    var worldPos = ship.worldPos.add(
-        Vector(this.initialPos.x - this.game.camera.width / 2, this.initialPos.y - this.game.camera.height / 2)
-    );
+    var worldPos = this.worldPos = localToWorld(Vector.fromPoint(this.initialPos));
     var sea = getSea(worldPos);
     if (sea === 'None'){
         this.visible = false;

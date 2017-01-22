@@ -10,8 +10,8 @@ Tempest.Sea.prototype = {
         this.stage.backgroundColor = '#FFF';
 
     	// Add stuff to the game
+        window.ship = this.ship = new Ship(this);
         this.ocean = new Ocean(this);
-    	this.ship = new Ship(this);
         this.add.existing(this.ocean);
 
         this.hazards = [];

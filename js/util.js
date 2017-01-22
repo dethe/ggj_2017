@@ -21,3 +21,13 @@ function deleteItem(list, item) {
     }
     return item;
 }
+
+function worldToLocal(vec){
+    var localCentre = Vector(_game.camera.width / 2, _game.camera.height / 2);
+    return localCentre.add(vec.subtract(ship.worldPos));
+}
+
+function localToWorld(vec){
+    var localCentre = Vector(_game.camera.width / 2, _game.camera.height / 2);
+    return ship.worldPos.add(vec.subtract(localCentre));
+}
