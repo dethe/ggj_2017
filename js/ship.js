@@ -21,8 +21,8 @@ Ship.prototype.update = function() {
 	//var dt = this.game.time.
 
 	var texIndex = Math.floor((this.velocity.degrees()+22.5) / 45) % 8;
-	console.log(this.velocity.degrees());
-	this.loadTexture(this.directionList[texIndex]);
+	//console.log(this.velocity.degrees());
+	//this.loadTexture(this.directionList[texIndex]);
 
 	/*this.x = game.camera.width / 2;
 	this.y = game.camera.height / 2;*/
