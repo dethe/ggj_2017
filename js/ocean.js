@@ -13,11 +13,11 @@ function getSea(vec){
     if (vec.magnitude() < 866) return 'Matcha';
     if (vec.magnitude() > 2000) return 'None';
     if (vec.degrees() < 30) return 'Gunpowder';
-    if (vec.degrees() < 90) return 'Oolong';
-    if (vec.degrees() < 150) return 'Green';
+    if (vec.degrees() < 90) return 'Rooibos';
+    if (vec.degrees() < 150) return 'Pekoe';
     if (vec.degrees() < 210) return 'Assam';
-    if (vec.degrees() < 270) return 'Pekoe';
-    if (vec.degrees() < 330) return 'Rooibos';
+    if (vec.degrees() < 270) return 'Green';
+    if (vec.degrees() < 330) return 'Oolong';
     return 'Gunpowder';
 }
 var seaColours = {
@@ -79,6 +79,11 @@ Wave.prototype.updateWorld = function(ship){
         Vector(this.initialPos.x - this.game.camera.width / 2, this.initialPos.y - this.game.camera.width / 2)
     );
     var sea = getSea(worldPos);
+    if (sea === 'None'){
+        this.visible = false;
+    }else{
+        this.visible = true;
+    }
     this.tint = seaColours[getSea(worldPos)];
 };
 

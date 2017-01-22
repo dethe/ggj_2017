@@ -7,7 +7,7 @@ var Ship = function(game) {
     this.baseAngle = 0;
 	this.animOffset = Math.random() * Math.PI;
     this.worldPos = Vector(-1500, 0);
-    this.velocity = Vector(0.4, 0);
+    this.velocity = Vector(1, 0);
 	this.updatePos();
 }
 
