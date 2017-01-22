@@ -31,3 +31,7 @@ function localToWorld(vec){
     var localCentre = Vector(_game.camera.width / 2, _game.camera.height / 2);
     return ship.worldPos.add(vec.subtract(localCentre));
 }
+
+function currentFromWorld(vec){
+    return Vector.fromPolar(vec.degrees() - 90, vec.magnitude() / MAX_RADIUS);
+}

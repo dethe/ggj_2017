@@ -94,6 +94,14 @@
         return multiply(this, 1 / mag);
     };
 
+    // Constrain magnitude to a maximum of value
+    Vector.prototype.cap = function(value){
+        if (this.magnitude() > value){
+            return Vector.fromPolar(this.degrees(), value);
+        }
+        return this;
+    };
+
     // Make magnitude equal to value
     Vector.prototype.setMagnitude = function(value){
         return Vector.fromPolar(this.degrees(), value);

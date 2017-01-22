@@ -52,7 +52,8 @@ Tempest.Sea.prototype = {
         this.ship.updateWorldPos();
         this.ocean.updateWorld(this.ship);
         this.seaText.setText(getSea(this.ship.worldPos) + ' Sea');
-        this.locationText.setText('x: ' + Math.round(this.ship.worldPos.x) + ', y: ' + Math.round(this.ship.worldPos.y) + ', angle: ' + Math.round(this.ship.worldPos.degrees()) + ', magnitude: ' + Math.round(this.ship.worldPos.magnitude()));
+        var obs = this.hazards[0];
+        this.locationText.setText('x: ' + Math.round(obs.worldPos.x) + ', y: ' + Math.round(obs.worldPos.y) + ', angle: ' + Math.round(obs.worldPos.degrees()) + ', magnitude: ' + Math.round(obs.worldPos.magnitude()));
 
         var sea = this;
         this.hazards.forEach(function(hazard){
@@ -63,6 +64,7 @@ Tempest.Sea.prototype = {
                     sea.ship.cargo.push(hazard);
                     sea.ocean.remove(hazard);
                     sea.add.existing(hazard);
+                    hazard.inInventory = true;
                     hazard.initialPos.x = 90 * sea.ship.cargo.length;
                     hazard.initialPos.y = sea.game.camera.height - 100;
                     deleteItem(sea.hazards, hazard);

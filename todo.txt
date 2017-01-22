@@ -28,5 +28,5 @@ ART TODO
 	- [X] S
 - [ ] giant spoon
 - [X] wind meter
-- [ ] inventory slots
+- [X] inventory slots
 - [ ] islands?
