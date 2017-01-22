@@ -20,9 +20,9 @@ Ship.prototype.update = function() {
 	this.updatePos();
 	//var dt = this.game.time.
 
-	var texIndex = Math.floor((this.velocity.degrees()+22.5) / 45) % 8;
-	//console.log(this.velocity.degrees());
-	//this.loadTexture(this.directionList[texIndex]);
+	var texIndex = Math.floor((360-this.velocity.degrees()+22.5) / 45) % 8;
+	console.log(texIndex);
+	this.loadTexture(this.directionList[texIndex]);
 
 	/*this.x = game.camera.width / 2;
 	this.y = game.camera.height / 2;*/
@@ -43,9 +43,9 @@ Ship.prototype.updatePos = function() {
 	this.y = this.game.camera.height / 2;
 
 	this.zIndex = this.y - 30;
-    this.angle = (this.baseAngle - 22.5) % 45 + 22.5;
+    this.angle = (this.baseAngle + 22.5) % 45 - 22.5;
 
-    this.angle = this.baseAngle;
+    //this.angle = this.baseAngle;
 
 	modulatePosition(this, 0, 2, 2.34);
 	modulateRotation(this, 2, 1.89, this.animOffset);
