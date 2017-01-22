@@ -1,12 +1,13 @@
 var Ship = function(game) {
 	this.game = game;
-	Phaser.Sprite.call(this, this.game, 0, 0, 'ship');
+	Phaser.Sprite.call(this, this.game, 0, 0, 'shipE');
+	this.directionList = ['shipE', 'shipNE','shipN','shipNW','shipW','shipSW','shipS','shipSE'];
 	this.scale.set(0.4, 0.4);
 	this.anchor.setTo(0.5, 0.5);
     this.baseAngle = 0;
 	this.animOffset = Math.random() * Math.PI;
     this.worldPos = Vector(-1500, 0);
-    this.direction = Vector(0.4, 0);
+    this.velocity = Vector(0.4, 0);
 	this.updatePos();
 }
 
@@ -19,17 +20,21 @@ Ship.prototype.update = function() {
 	this.updatePos();
 	//var dt = this.game.time.
 
+	var texIndex = Math.floor((this.velocity.degrees()+22.5) / 45) % 8;
+	console.log(this.velocity.degrees());
+	this.loadTexture(this.directionList[texIndex]);
+
 	/*this.x = game.camera.width / 2;
 	this.y = game.camera.height / 2;*/
 }
 
 Ship.prototype.turn = function(degrees){
-    this.direction = this.direction.rotate(degrees);
+    this.velocity = this.velocity.rotate(degrees);
     this.baseAngle += degrees;
 };
 
 Ship.prototype.updateWorldPos = function(){
-    this.worldPos = this.worldPos.add(this.direction);
+    this.worldPos = this.worldPos.add(this.velocity);
 };
 
 Ship.prototype.updatePos = function() {
@@ -38,7 +43,8 @@ Ship.prototype.updatePos = function() {
 	this.y = this.game.camera.height / 2;
 
 	this.zIndex = this.y - 30;
-    this.angle = this.baseAngle;
+    this.angle = (this.baseAngle - 22.5) % 45 + 22.5;
+
 	modulatePosition(this, 0, 2, 2.34);
 	modulateRotation(this, 2, 1.89, this.animOffset);
 }
