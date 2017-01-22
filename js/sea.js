@@ -16,11 +16,11 @@ Tempest.Sea.prototype = {
 		this.ocean.add(this.ship);
 		this.ocean.add(this.lemon);
 
-		this.island = new Island(this, 100, 100, 'sugarberg');
+		//this.island = new Island(this, 100, 100, 'sugarberg');
 
-		this.add.existing(this.island);
+		//this.add.existing(this.island);
 
-		this.ocean.add(this.island);
+		//this.ocean.add(this.island);
 
         this.keys = this.input.keyboard.addKeys({
             'forward1': Phaser.KeyCode.W, 'forward2': Phaser.KeyCode.UP,
@@ -44,6 +44,8 @@ Tempest.Sea.prototype = {
         }
         // adjust ship's position in the world (the teapot)
         // move waves and hazards around the ship
+
+
         this.ocean.updateWorld(this.ship);
         this.lemon.updateWorld(this.ship);
         this.seaText.setText(getSea(this.ship.worldPos) + ' Sea');

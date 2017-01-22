@@ -51,8 +51,8 @@ Wave.prototype.constructor = Wave;
 
 Wave.prototype.updateWorld = function(ship){
     // move the ship
-    this.initialPos.x -= ship.direction.x;
-    this.initialPos.y -= ship.direction.y;
+    this.initialPos.x -= ship.velocity.x;
+    this.initialPos.y -= ship.velocity.y;
 
     // just to make the tests below shorter
     var w = waveSize.width;

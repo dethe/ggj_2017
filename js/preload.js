@@ -9,9 +9,15 @@ Tempest.Preload.prototype = {
     // this.preloadBar.scale.setTo(0.5);
     this.load.setPreloadSprite(this.preloadBar);
     this.game.load.image('wave', './images/wave2.png');
-	this.game.load.image('ship', './images/ship.png');
     this.game.load.image('lemon', './images/obstacles/lemon.png');
 
+	// ship
+	this.game.load.image('shipW', './images/ship/W.png');
+	this.game.load.image('shipE', './images/ship/E.png');
+	this.game.load.image('shipNW', './images/ship/NW.png');
+	this.game.load.image('shipNW', './images/ship/NE.png');
+
+	// islands
 	this.game.load.image('sugarberg', './images/sugarberg.png');
 },
 create: function(){
