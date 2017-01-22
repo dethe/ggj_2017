@@ -73,7 +73,8 @@ Ship.prototype.updateWorld = function(){
 };
 
 Ship.prototype.updatePos = function() {
-    this.velocity = this.velocity.add(shipCurrentFromWorld(this.worldPos)).cap(1.5);
+
+    this.velocity = this.velocity.add(shipCurrentFromWorld(this.worldPos)).cap(1);
 
     this.worldPos = this.worldPos.add(this.velocity).cap(MAX_RADIUS);
 	if(this.selectedIngredient != undefined) {
@@ -96,7 +97,6 @@ Ship.prototype.updatePos = function() {
 			var vec = Vector(this.selectedIngredient.x - this.game.camera.width/2, this.selectedIngredient.y - this.game.camera.height/2);
 
 			vec = vec.setMagnitude(Math.min(vec.magnitude(), 120));
-			console.log(vec.magnitude());
 			this.selectedIngredient.x = this.x + vec.getX();
 			this.selectedIngredient.y = this.y + vec.getY();
 

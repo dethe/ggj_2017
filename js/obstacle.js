@@ -13,6 +13,10 @@ var Obstacle = function(game, x, y, name) {
     this.velocity = Vector(0,0);
 
 	this.animOffset = Math.random() * Math.PI;
+
+	this.events.onInputDown.add(function() {
+		this.game.selectedHazard = this.game.ship.cargo.indexOf(this);
+	}, this)
 }
 
 Obstacle.prototype = Object.create(Phaser.Sprite.prototype);
@@ -28,9 +32,11 @@ Obstacle.prototype.updatePos = function(){
 
 Obstacle.prototype.update = function() {
     if (! this.inInventory) {
+		this.inputEnabled = false;
 		this.tint = 0xffffff;
         this.updatePos();
     } else {
+		this.inputEnabled = true;
 		var index = this.game.ship.cargo.indexOf(this)
 		this.initialPos.x = 90 * index + 90;
 		this.initialPos.y = this.game.camera.height - 100;
