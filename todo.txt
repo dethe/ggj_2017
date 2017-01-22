@@ -2,8 +2,7 @@ TODO LIST
 
 - [ ] figure out gameplay and goals
 
-- [x] player ship movement
-- [x] wave scrolling
+- [ ] wave scrolling
 - [ ] separate bobbing into reusable function
 - [ ] islands
 	- cut island image into separate images at different z-indexes?
@@ -11,8 +10,8 @@ TODO LIST
 
 ART TODO
 
-- [x] lemon
-- [ ] small sugar cube
+- [X] lemon
+- [X] small sugar cube
 - [ ] new waves
 - [ ] ship(s) (in 8 directions)
 - [ ] islands

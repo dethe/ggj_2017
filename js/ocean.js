@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 var wavesPerRow = 24;
 var wavesPerColumn = 22;
 
@@ -9,6 +10,20 @@ var waveSize = {
 };
 
 var Wave = function(game, x, y) {
+=======
+/*
+COLORS
+Black: 0x670400
+Rooibos: 0xb40905
+Assam: 0xc35918
+Oolong: 0xf6d47a
+Green: 0xbdb840
+Matcha: 0x959f3c
+
+*/
+
+var Wave = function(game, x, y, width, height) {
+>>>>>>> Stashed changes
 	this.game = game;
 	Phaser.Image.call(this, this.game, x, y, 'wave');
 

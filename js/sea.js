@@ -10,6 +10,7 @@ Tempest.Sea.prototype = {
     	this.ship = new Ship(this);
         this.lemon = new Obstacle(this, 100, 100, 'lemon');
         this.add.existing(this.ocean);
+
     	//this.add.existing(ship);
         this.add.existing(this.lemon);
 		this.ocean.add(this.ship);
@@ -18,6 +19,8 @@ Tempest.Sea.prototype = {
 		this.island = new Island(this, 100, 100, 'sugarberg');
 
 		this.add.existing(this.island);
+
+		this.ocean.add(this.island);
 
         this.keys = this.input.keyboard.addKeys({
             'forward1': Phaser.KeyCode.W, 'forward2': Phaser.KeyCode.UP,

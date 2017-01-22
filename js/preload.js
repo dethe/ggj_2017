@@ -12,7 +12,7 @@ Tempest.Preload.prototype = {
 	this.game.load.image('ship', './images/ship.png');
     this.game.load.image('lemon', './images/obstacles/lemon.png');
 
-	this.game.load.image('sugarberg', './images/sugarberg.png')
+	this.game.load.image('sugarberg', './images/sugarberg.png');
 },
 create: function(){
     //load game assets
