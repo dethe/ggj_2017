@@ -53,7 +53,7 @@ Tempest.Sea.prototype = {
         this.ocean.updateWorld(this.ship);
         this.seaText.setText(getSea(this.ship.worldPos) + ' Sea');
         var obs = this.hazards[0];
-        this.locationText.setText('x: ' + Math.round(obs.worldPos.x) + ', y: ' + Math.round(obs.worldPos.y) + ', angle: ' + Math.round(obs.worldPos.degrees()) + ', magnitude: ' + Math.round(obs.worldPos.magnitude()));
+        this.locationText.setText('x: ' + Math.round(ship.worldPos.x) + ', y: ' + Math.round(ship.worldPos.y) + ', angle: ' + Math.round(ship.worldPos.degrees()) + ', magnitude: ' + Math.round(ship.worldPos.magnitude()));
 
         var sea = this;
         this.hazards.forEach(function(hazard){
