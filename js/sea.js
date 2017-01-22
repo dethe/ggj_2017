@@ -28,8 +28,8 @@ Tempest.Sea.prototype = {
             'right1': Phaser.KeyCode.D, 'right2': Phaser.KeyCode.RIGHT
         });
 
-        this.seaText = this.add.text(50, 50, "Assam Sea", {font: '18pt Helvetica', fill: '#FFF'});
-        this.locationText = this.add.text(50, 80, "", {font: '14pt Helvetica', fill: '#FFF'});
+        this.seaText = this.add.text(50, 50, "Assam Sea", {font: '18pt Helvetica', fill: '#FFF', stroke: '#000'});
+        this.locationText = this.add.text(50, 80, "", {font: '14pt Helvetica', fill: '#FFF', stroke: '#000'});
     },
     update: function update() {
         if (this.keys.forward1.isDown || this.keys.forward2.isDown){
