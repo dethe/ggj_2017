@@ -17,9 +17,9 @@ Tempest.Sea.prototype = {
         this.hazards = [];
 
 		this.ocean.add(this.ship);
-        for (var i = 0; i < 12; i++){
+        for (var i = 0; i < 40; i++){
             var loc = randomVector();
-            var lemon = this.ocean.add(new Obstacle(this, loc.x, loc.y, 'lemon'));
+            var lemon = this.ocean.add(new Obstacle(this, loc.x, loc.y));
             this.hazards.push(lemon);
         }
 
@@ -63,8 +63,8 @@ Tempest.Sea.prototype = {
                     sea.ship.cargo.push(hazard);
                     sea.ocean.remove(hazard);
                     sea.add.existing(hazard);
-                    hazard.x = 50 * (sea.ship.cargo.length -1);
-                    hazard.y = sea.game.camera.height;
+                    hazard.initialPos.x = 90 * sea.ship.cargo.length;
+                    hazard.initialPos.y = sea.game.camera.height - 100;
                     deleteItem(sea.hazards, hazard);
                 }
             }
