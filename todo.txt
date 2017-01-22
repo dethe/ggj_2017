@@ -3,10 +3,10 @@ TODO LIST
 - [X] figure out gameplay and goals
 
 - [X] pick up "obstacles"
-- [ ] slingshot "obstacles" from inventory
+- [X] slingshot "obstacles" from inventory
 	// selected inventory item is at the centre of the ship, drag, pull back, and release to shoot.
 - [X] "obstacles" get stirred in at the centre of the Tempest
-- [ ]
+- [ ] Splash Screen
 
 - [ ] story/controls popup at beginning
 - [X] wind vector field
