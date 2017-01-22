@@ -15,6 +15,7 @@ Tempest.Sea.prototype = {
         this.add.existing(this.ocean);
 
         this.hazards = [];
+		this.selectedHazard = 0;
 
 		this.ocean.add(this.ship);
         for (var i = 0; i < 40; i++){
@@ -69,8 +70,6 @@ Tempest.Sea.prototype = {
                     sea.ocean.remove(hazard);
                     sea.add.existing(hazard);
                     hazard.inInventory = true;
-                    hazard.initialPos.x = 90 * sea.ship.cargo.length;
-                    hazard.initialPos.y = sea.game.camera.height - 100;
                     deleteItem(sea.hazards, hazard);
                 }
             }

@@ -27,9 +27,20 @@ Obstacle.prototype.updatePos = function(){
 }
 
 Obstacle.prototype.update = function() {
-    if (! this.inInventory){
+    if (! this.inInventory) {
+		this.tint = 0xffffff;
         this.updatePos();
-    }
+    } else {
+		var index = this.game.ship.cargo.indexOf(this)
+		this.initialPos.x = 90 * index + 90;
+		this.initialPos.y = this.game.camera.height - 100;
+
+		if(this.game.selectedHazard == index) {
+			this.tint = 0x00ff00;
+		}else{
+			this.tint = 0xffffff;
+		}
+	}
 	this.x = this.initialPos.x;
 	this.y = this.initialPos.y;
 	modulatePosition(this, 0, 4, 1.89, this.animOffset);
