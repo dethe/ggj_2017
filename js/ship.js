@@ -45,6 +45,8 @@ Ship.prototype.updatePos = function() {
 	this.zIndex = this.y - 30;
     this.angle = (this.baseAngle - 22.5) % 45 + 22.5;
 
+    this.angle = this.baseAngle;
+
 	modulatePosition(this, 0, 2, 2.34);
 	modulateRotation(this, 2, 1.89, this.animOffset);
 }

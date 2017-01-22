@@ -8,23 +8,30 @@ var waveSize = {
     height: 71
 };
 
-function getSea(x,y){
+function getSea(vec){
     // x,y in world coordinates, where 0,0 is the center of the Matcha Sea
-    var vec = Vector(x,y);
-    if (vec.mag() < 866) return 'Matcha';
-    if (vec.mag() > 2000) return 'None';
+    if (vec.magnitude() < 866) return 'Matcha';
+    if (vec.magnitude() > 2000) return 'None';
+    if (vec.degrees() < 30) return 'Gunpowder';
+    if (vec.degrees() < 90) return 'Oolong';
+    if (vec.degrees() < 150) return 'Green';
+    if (vec.degrees() < 210) return 'Assam';
+    if (vec.degrees() < 270) return 'Pekoe';
+    if (vec.degrees() < 330) return 'Rooibos';
+    return 'Gunpowder';
 }
+var seaColours = {
+    Pekoe: 0x670400,
+    Rooibos: 0xb40905,
+    Assam: 0xc35918,
+    Oolong: 0xf6d47a,
+    Green: 0xbdb840,
+    Matcha: 0x959f3c,
+    Gunpowder: 0xd2cec3,
+    None: 0xff69b4
+};
 
 var Wave = function(game, x, y) {
-
-    var seaColours = {
-        Pekoe: '0x670400',
-        Rooibos: '0xb40905',
-        Assam: '0xc35918',
-        Oolong: '0xf6d47a',
-        Green: '0xbdb840',
-        Matcha: '0x959f3c'
-    };
 
 	this.game = game;
 	Phaser.Image.call(this, this.game, x, y, 'wave');
@@ -42,10 +49,10 @@ var Wave = function(game, x, y) {
 Wave.prototype = Object.create(Phaser.Image.prototype);
 Wave.prototype.constructor = Wave;
 
-Wave.prototype.updateWorld = function(shipMotion){
+Wave.prototype.updateWorld = function(ship){
     // move the ship
-    this.initialPos.x -= shipMotion.x;
-    this.initialPos.y -= shipMotion.y;
+    this.initialPos.x -= ship.direction.x;
+    this.initialPos.y -= ship.direction.y;
 
     // just to make the tests below shorter
     var w = waveSize.width;
@@ -67,6 +74,12 @@ Wave.prototype.updateWorld = function(shipMotion){
     }else if(this.initialPos.y > (gh - h)){
         this.initialPos.y -= gh;
     }
+
+    var worldPos = ship.worldPos.add(
+        Vector(this.initialPos.x - this.game.camera.width / 2, this.initialPos.y - this.game.camera.width / 2)
+    );
+    var sea = getSea(worldPos);
+    this.tint = seaColours[getSea(worldPos)];
 };
 
 Wave.prototype.update = function() {
@@ -99,16 +112,11 @@ Ocean.prototype.constructor = Ocean;
 
 Ocean.prototype.update = function() {
 	Phaser.Group.prototype.update.call(this);
-	//this.children.update();
-	// this.sort('zIndex', Phaser.Group.SORT_ASCENDING);
-	/*this.children.sort(function(a, b) {
-		return b.initialPos.y;
-	});*/
 }
 
-Ocean.prototype.updateWorld = function(shipMotion){
+Ocean.prototype.updateWorld = function(ship){
     this.waves.forEach(function(wave){
-        wave.updateWorld(shipMotion);
+        wave.updateWorld(ship);
     });
     this.children.sort(function(a,b){ return (a.initialPos || a).y - (b.initialPos || b).y; });
     this.children.forEach(function(child, index){ child.z = index; });

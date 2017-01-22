@@ -27,6 +27,8 @@ Tempest.Sea.prototype = {
             'left1': Phaser.KeyCode.A, 'left2': Phaser.KeyCode.LEFT,
             'right1': Phaser.KeyCode.D, 'right2': Phaser.KeyCode.RIGHT
         });
+
+        this.seaText = this.add.text(50, 50, "Assam Sea", {font: '18pt Helvetica', fill: '#000'});
     },
     update: function update() {
         if (this.keys.forward1.isDown || this.keys.forward2.isDown){
@@ -41,7 +43,10 @@ Tempest.Sea.prototype = {
         }
         // adjust ship's position in the world (the teapot)
         // move waves and hazards around the ship
-        this.ocean.updateWorld(this.ship.velocity);
-        this.lemon.updateWorld(this.ship.velocity);
+
+
+        this.ocean.updateWorld(this.ship);
+        this.lemon.updateWorld(this.ship);
+        this.seaText.setText(getSea(this.ship.worldPos) + ' Sea');
     }
 }

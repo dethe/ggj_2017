@@ -20,7 +20,7 @@ Obstacle.prototype.update = function() {
 	modulatePosition(this, 0, 4, 1.89, this.animOffset);
 }
 
-Obstacle.prototype.updateWorld = function(shipMotion) {
-    this.initialPos.x -= shipMotion.x;
-    this.initialPos.y -= shipMotion.y;
+Obstacle.prototype.updateWorld = function(ship) {
+    this.initialPos.x -= ship.direction.x;
+    this.initialPos.y -= ship.direction.y;
 };
