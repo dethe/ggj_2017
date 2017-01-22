@@ -3,6 +3,8 @@ var Tempest = Tempest || {};
 Tempest.Preload = function(){};
 Tempest.Preload.prototype = {
   preload: function() {
+
+	  this.game.backgroundColor = 0xfff;
     //show loading screen
     this.preloadBar = this.add.sprite(this.world.centerX, this.world.centerY, 'preloadbar');
     this.preloadBar.anchor.setTo(0.5, 0.5);
@@ -30,7 +32,7 @@ Tempest.Preload.prototype = {
 	this.game.load.image('shipSE', './images/ship/SE.png');
 
 	// islands
-	this.game.load.image('sugarberg', './images/sugarberg.png');
+	//this.game.load.image('sugarberg', './images/sugarberg.png');
 },
 create: function(){
     //load game assets

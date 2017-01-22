@@ -14,6 +14,8 @@ TODO LIST
 - [ ] current vector field? (or use wind?) moves the waves around rather than sitting in one place
 - [ ] spoon going around and around, don't run into it!
 
+- [ ] sound effects
+
 
 ART TODO
 
