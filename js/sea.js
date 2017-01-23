@@ -7,11 +7,12 @@ Tempest.Sea = function(){};
 //setting game configuration and loading the assets for the loading screen
 Tempest.Sea.prototype = {
     getGoal: function(){
-        return [1,2,3,4,5].map(function(){
+        return [1,2].map(function(){
             return _.sample(obstacleNames);
         }).sort();
     },
     create: function create() {
+        var state = this;
         this.stage.backgroundColor = '#FFF';
 
     	// Add stuff to the game
@@ -21,8 +22,13 @@ Tempest.Sea.prototype = {
 
         this.hazards = [];
 		this.selectedHazard = 0;
+        this.goal = this.getGoal();
 
 		this.ocean.add(this.ship);
+        this.goal.forEach(function(goal){
+            var loc = randomVector();
+            var lemon = state.ocean.add(new Obstacle(state, loc.x, loc.y, goal));
+        });
         for (var i = 0; i < 40; i++){
             var loc = randomVector();
             var lemon = this.ocean.add(new Obstacle(this, loc.x, loc.y));
@@ -40,7 +46,6 @@ Tempest.Sea.prototype = {
 
         this.seaText = this.add.text(50, 50, "Assam Sea", {font: '18pt Helvetica', fill: '#FFF', stroke: '#000', strokeThickness: 2});
         this.locationText = this.add.text(50, 80, "", {font: '14pt Helvetica', fill: '#FFF', stroke: '#000', strokeThickness: 2});
-        this.goal = this.getGoal();
         this.goalText = this.add.text(this.game.camera.width / 2, 50, 'Goal: ' + this.goal.join(', '), {font: '14pt Helvetica', fill: '#FFF', stroke: '#000', strokeThickness: 2})
         this.placedIngredientsText = this.add.text(this.game.camera.width / 2, 80, "", {font: '14pt Helvetica', fill: '#FFF', stroke: '#000', strokeThickness: 2});
     },
@@ -64,9 +69,6 @@ Tempest.Sea.prototype = {
         this.ocean.updateWorld(this.ship);
         this.seaText.setText(getSea(this.ship.worldPos) + ' Sea');
         var goalProgress = this.getIngredientsInTempest();
-        if (this.goal.join('') === goalProgress.join('')){
-            this.state.start('Win');
-        }
         this.placedIngredientsText.setText('Progress: ' + goalProgress.join(', '));
         var obs = this.hazards[0];
         // this.locationText.setText('x: ' + Math.round(ship.worldPos.x) + ', y: ' + Math.round(ship.worldPos.y) + ', angle: ' + Math.round(ship.worldPos.degrees()) + ', magnitude: ' + Math.round(ship.worldPos.magnitude()));
@@ -84,5 +86,8 @@ Tempest.Sea.prototype = {
                 }
             }
         });
+        if (this.goal.join('') === goalProgress.join('')){
+            this.state.start('Win');
+        }
     }
 }

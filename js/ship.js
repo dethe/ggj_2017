@@ -29,7 +29,6 @@ var Ship = function(game) {
 		}, this);
 
 		this.selectedIngredient.events.onDragStart.add(function() {
-			console.log('start');
 			this.selectedIngredient.autoCenter = false;
 		}, this);
 		this.selectedIngredient.events.onDragStop.add(function() {

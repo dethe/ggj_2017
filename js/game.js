@@ -5,4 +5,5 @@ _game.state.add('Boot', Tempest.Boot);
 _game.state.add('Preload', Tempest.Preload);
 _game.state.add('Intro', Tempest.Intro);
 _game.state.add('Sea', Tempest.Sea);
+_game.state.add('Win', Tempest.Win);
 _game.state.start('Boot');
