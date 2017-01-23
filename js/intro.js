@@ -24,7 +24,6 @@ var Tempest = Tempest || {};
 Tempest.Intro = function(){};
 Tempest.Intro.prototype = {
     create: function(){
-        console.log('Created Intro');
         var game = this;
         game.add.text(text_x, 50, header_text, header_font);
         body_text.forEach(function(text, index){
@@ -32,8 +31,8 @@ Tempest.Intro.prototype = {
         });
         this.input.keyboard.enabled = true;
         this.input.keyboard.addCallbacks({}, null, null, function(){
+            game.input.keyboard.onPressCallback = null;
             game.state.start('Sea');
-            game.input.keyboard.stop();
         });
     }
 };

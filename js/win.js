@@ -13,7 +13,6 @@ var Tempest = Tempest || {};
 Tempest.Win = function(){};
 Tempest.Win.prototype = {
     create: function(){
-        console.log('Created Win');
         var game = this;
         game.add.text(text_x, 50, header_text, header_font);
         body_text.forEach(function(text, index){
@@ -21,9 +20,9 @@ Tempest.Win.prototype = {
         });
         this.input.keyboard.enabled = true;
         this.input.keyboard.addCallbacks({}, null, null, function(){
+            game.input.keyboard.onPressCallback = null;
             game.state.start('Intro');
-            game.input.keyboard.stop();
         });
     }
 };
-}();
+})();

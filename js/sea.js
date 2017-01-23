@@ -12,7 +12,6 @@ Tempest.Sea.prototype = {
         }).sort();
     },
     create: function create() {
-        console.log('Created Sea');
         this.stage.backgroundColor = '#FFF';
 
     	// Add stuff to the game
@@ -36,7 +35,6 @@ Tempest.Sea.prototype = {
 		//this.island = new Island(this, 100, 100, 'sugarberg');
 		//this.add.existing(this.island);
 		//this.ocean.add(this.island);
-
         this.keys = this.input.keyboard.addKeys({
             'forward1': Phaser.KeyCode.W, 'forward2': Phaser.KeyCode.UP,
             'left1': Phaser.KeyCode.A, 'left2': Phaser.KeyCode.LEFT,
@@ -57,12 +55,10 @@ Tempest.Sea.prototype = {
             // ship moves forward
         }
         if (this.keys.left1.isDown || this.keys.left2.isDown){
-            console.log('turn left');
             // ship turns left
             this.ship.turn(-2);
         }else if (this.keys.right1.isDown || this.keys.right2.isDown){
             // ship turns right
-            console.log('turn right');
             this.ship.turn(2);
         }
         // adjust ship's position in the world (the teapot)
@@ -71,7 +67,7 @@ Tempest.Sea.prototype = {
         this.ocean.updateWorld(this.ship);
         this.seaText.setText(getSea(this.ship.worldPos) + ' Sea');
         var goalProgress = this.getIngredientsInTempest();
-        if (this.goal && _.isEqual(this.goal, goalProgress)){
+        if (this.goal.join('') === goalProgress.join('')){
             this.state.start('Win');
         }
         this.placedIngredientsText.setText('Progress: ' + goalProgress.join(', '));

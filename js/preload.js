@@ -35,7 +35,6 @@ Tempest.Preload.prototype = {
 	//this.game.load.image('sugarberg', './images/sugarberg.png');
 },
 create: function(){
-    console.log('Created Preload');
     //load game assets
     this.stage.backgroundColor = '#000';
 
