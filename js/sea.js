@@ -7,7 +7,7 @@ Tempest.Sea = function(){};
 //setting game configuration and loading the assets for the loading screen
 Tempest.Sea.prototype = {
     getGoal: function(){
-        return [1,2].map(function(){
+        return [1,2,3,4,5].map(function(){
             return _.sample(obstacleNames);
         }).sort();
     },
